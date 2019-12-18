@@ -1,3 +1,10 @@
+/*
+ * @Author: 席鹏昊
+ * @Date: 2019-12-18 15:27:30
+ * @LastEditors  : 席鹏昊
+ * @LastEditTime : 2019-12-18 16:05:55
+ * @Description: 
+ */
 import Vue from 'vue'
 
 import Cookies from 'js-cookie'
@@ -14,7 +21,11 @@ import store from './store'
 import router from './router'
 
 import i18n from './lang' // internationalization
+
+//字体图标
 import './icons' // icon
+
+//路由守卫组件
 import './permission' // permission control
 import './utils/error-log' // error log
 
@@ -28,10 +39,12 @@ import * as filters from './filters' // global filters
  * Currently MockJs will be used in the production environment,
  * please remove it before going online! ! !
  */
-import { mockXHR } from '../mock'
-if (process.env.NODE_ENV === 'production') {
-  mockXHR()
-}
+
+//模拟数据
+// import { mockXHR } from '../mock'
+// if (process.env.NODE_ENV === 'production') {
+//   mockXHR()
+// }
 
 Vue.use(Element, {
   size: Cookies.get('size') || 'medium', // set element-ui default size
