@@ -96,18 +96,19 @@ export const constantRoutes = [
       }
     ]
   },
-  {
-    path: '/exam',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/exam/index'),
-        name: 'Exam',
-        meta: { title: 'Exam', icon: 'exam', affix: true }
-      }
-    ]
-  },
+  // {
+  //   path: '/exam',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: 'index',
+  //       component: () => import('@/views/exam/index'),
+  //       name: 'Exam',
+  //       meta: { title: 'documentation', icon: 'exam', affix: true }
+  //     }
+  //   ]
+  // },
+
   {
     path: '/guide',
     component: Layout,
@@ -231,6 +232,24 @@ export const asyncRoutes = [
         component: () => import('@/views/example/list'),
         name: 'ArticleList',
         meta: { title: 'articleList', icon: 'list' }
+      }
+    ]
+  },
+  // 阅卷管理
+  {
+    path: '/exam',
+    component: Layout,
+    redirect: '/exam/Await',
+    alwaysShow: true,
+    meta: {
+      title: '阅卷管理',
+      icon: 'example'
+    },
+    children: [
+      {
+        path: 'await',
+        component: () => import('@/views/exam/Await'),
+        meta: { title: '待批班级', icon: 'edit' }
       }
     ]
   },
