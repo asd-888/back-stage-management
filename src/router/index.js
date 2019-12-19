@@ -105,6 +105,11 @@ export const constantRoutes = [
       meta: { title: 'exam', icon: 'dashboard' }
     }]
   },
+
+    
+   
+
+
   {
     path: '/guide',
     component: Layout,
@@ -336,6 +341,46 @@ export const asyncRoutes = [
       }
     ]
   },
+ //班级管理路由
+  
+ {
+  path: '/bjgl',
+  component: Layout,
+  redirect: '/bjgl/bjgl',
+
+  meta: {
+    title: '班级管理',
+    icon: 'example'
+  },
+  children: [
+    {
+      path: 'bjgl',
+      component: () => import('@/views/Bjgl/bjgl'),
+     
+      meta: { title: '班级管理'}
+    },
+    {
+      path: 'jsgl',
+      component: () => import('@/views/Bjgl/jsgl'),
+     
+      meta: { title: '教室管理'}
+    },
+    {
+      path: 'xsgl',
+      component: () => import('@/views/Bjgl/xsgl'),
+     
+      meta: { title: '学生管理'}
+    },
+  ]
+},
+  
+
+
+
+
+
+
+
 
   {
     path: '/pdf',
