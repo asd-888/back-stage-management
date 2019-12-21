@@ -96,18 +96,6 @@ export const constantRoutes = [
       }
     ]
   },
-  // {
-  //   path: '/exam',
-  //   component: Layout,
-  //   children: [
-  //     {
-  //       path: 'index',
-  //       component: () => import('@/views/exam/index'),
-  //       name: 'Exam',
-  //       meta: { title: 'documentation', icon: 'exam', affix: true }
-  //     }
-  //   ]
-  // },
 
   {
     path: '/guide',
@@ -250,6 +238,10 @@ export const asyncRoutes = [
         path: 'await',
         component: () => import('@/views/exam/Await'),
         meta: { title: '待批班级', icon: 'edit' }
+      },
+      {
+        path: '/exam/classmate',
+        component: () => import('@/views/exam/classmate')
       }
     ]
   },

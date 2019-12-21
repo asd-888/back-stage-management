@@ -1,30 +1,37 @@
 <template>
-  <div class="exam">
+  <div class="classmate">
     <el-container>
-      <el-header>待批班级</el-header>
+      <el-header>试卷列表</el-header>
       <el-main>
         <el-table
-          :data="classList"
-          stripe
+          :data="PaperList"
           style="width: 100%"
         >
           <el-table-column
             prop="grade_name"
-            label="班级名"
+            label="班级"
           />
           <el-table-column
-            prop="subject_text"
-            label="课程名称"
+            prop="student_name"
+            label="姓名"
           />
           <el-table-column
-            prop=""
+            prop="status"
             label="阅卷状态"
           />
-          <el-table-column
-            prop="room_text"
-            label="成材率"
-          />
 
+          <el-table-column
+            prop="start_time"
+            label="开始时间"
+          />
+          <el-table-column
+            prop="end_time"
+            label="结束时间"
+          />
+          <el-table-column
+            prop="name"
+            label="成才率"
+          />
           <el-table-column label="操作">
             <template slot-scope="scope">
               <span
@@ -38,15 +45,14 @@
         <div class="block">
           <el-pagination
             :current-page="currentPage4"
-            :total="classListNum"
-            :page-sizes="[5, 10, 20, 50]"
-            :page-size="pageSize"
+            :page-sizes="[5, 10, 20, 40]"
+            :page-size="100"
             layout="total, sizes, prev, pager, next, jumper"
+            :total="paperListNum"
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
           />
         </div>
-
       </el-main>
     </el-container>
   </div>
@@ -57,62 +63,54 @@ import { mapState, mapMutations, mapActions } from 'vuex'
 export default {
   data() {
     return {
-      currentPage4: 4,
-      pageSize: 5
+      currentPage4: 4
     }
   },
   computed: {
     ...mapState({
-      classList: state => state.await.classList,
-      classListNum: state => state.await.classListNum
+      PaperList: state => state.await.studentPaperList,
+      paperListNum: state => state.await.paperListNum
     })
   },
   methods: {
-
+    ...mapActions({
+      studentPaperList: 'await/studentPaperList'
+    }),
     handleEdit(index, row) {
-      this.$router.push({
-        path: '/exam/classmate',
-        query: {
-          grade_id: row.grade_id
-        }
-      })
-      localStorage.setItem('grade_name', row.grade_name)
+      console.log(index, row)
     },
+
     handleSizeChange(val) {
-      this.pageSize = val
-      console.log(this.pageSize)
-      this.studentList()
       console.log(`每页 ${val} 条`)
     },
     handleCurrentChange(val) {
       console.log(`当前页: ${val}`)
-    },
-    ...mapActions({
-      gradeList: 'await/gradeList'
-    })
+    }
   },
   created() {
-    this.gradeList()
+    // this.grade_name = localStorage.getItem('grade_name')
+    // ,grade_name:localStorage.getItem('grade_name')
+    this.studentPaperList({ grade_id: this.$route.query.grade_id })
   }
 }
-
 </script>
 
 <style scoped>
-  .exam{
+.classmate{
     width: 100%;
     height: 100%;
-
-  }
-  .el-header {
+    background: #f0f2f5;
+}
+.el-header {
     height: 70px;
     color: rgba(0,0,0,.85);
     font-weight: 500;
     line-height: 70px;
     font-size: 18px;
-    margin-bottom: 10px;
-  }
-
+    background: #fff;
+    margin-bottom: 25px;
+    /* background: #f0f2f5; */
+}
   .el-main {
     margin: 0 20px;
     background-color: #fff;
@@ -120,23 +118,23 @@ export default {
     text-align: right;
     /* line-height: 50px; */
   }
-
-  .el-container:nth-child(5) .el-aside,
-  .el-container:nth-child(6) .el-aside {
-    line-height: 260px;
-  }
-
-  .el-container:nth-child(7) .el-aside {
-    line-height: 320px;
-  }
-  .is-leaf{
-    width: 20%;
-  }
-  .block{
-    margin-top: 10px;
-  }
-  span{
+.is-leaf{
+    width: 14%;
+}
+span{
     cursor: pointer;
     color:#0139FD
   }
+.el-table__header-wrapper{
+    height: 60px;
+    line-height: 60px;
+}
+.block{
+    margin-top: 20px;
+    /* width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: right; */
+}
 </style>
