@@ -83,7 +83,7 @@ export function roomAll() {
 
 
 //获取已经分配教室的班级
-export function grade() {
+export function grades() {
     return request({
         url: "/manger/grade",
         method: "get"
