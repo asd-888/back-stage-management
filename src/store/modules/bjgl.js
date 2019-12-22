@@ -1,4 +1,4 @@
-import { grades,gradeUpdate} from "@/api/class-and-grade"
+import { grades,gradeUpdate,gradeDelete,gradeAdd} from "@/api/class-and-grade"
 
 const state = {
     bjlist : [],
@@ -18,14 +18,25 @@ const mutations = {
         console.log(res)
         commit('ADD_ERROR_LOG', res.data)
     },
-    async gradeUpdate({ commit }, payload) {
-      console.log(payload)
-      let {grade_id,grade_name}=payload
-      let res =  await gradeUpdate(grade_id)
-      console.log(res)
+    async gradeUpdate({ commit }, payload) {  //修改班级
+      let res =  await gradeUpdate(payload)
+      
      
   },
-
+  //删除
+  async gradeDelete({ commit }, payload) {
+    console.log(payload)
+   
+    let res =  await gradeDelete(payload)  //这里有问题，要么422要么500
+    console.log(res)
+   
+},
+//添加班级
+async gradeAdd({ commit }, payload) {
+ 
+  let res =  await gradeAdd(payload)
+  
+},
   }
   
   export default {

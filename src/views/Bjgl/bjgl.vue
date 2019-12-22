@@ -2,7 +2,7 @@
   <div class="wrap">
     <h2>班级管理</h2>
     <div class="addClass">
-      <el-button type="primary" class="btn"  @click="dialogFormVisible = true">添加班级</el-button>
+      <el-button type="primary" class="btn"  @click="addfn">添加班级</el-button>
     </div>
     <el-table :data="bjlist" style="width: 90%" class="biaoge">
 
@@ -46,19 +46,19 @@
 <el-dialog title="添加班级" :visible.sync="dialogFormVisible">
   <el-form :model="form" label-position="top">
     <el-form-item label="班级名"  > 
-      <el-input v-model="form.name" autocomplete="off"  :disabled="true" :style='{width:formLabelWidth}'></el-input>
+      <el-input v-model="form.name" autocomplete="off"  :disabled="flag" :style='{width:formLabelWidth}'></el-input>
     </el-form-item>
     <el-form-item label="教室号"   > 
-      <el-select :value="aaa" placeholder="请选择活动区域" :style='{width:formLabelWidth}'>
+      <el-select v-model="form.region" placeholder="请选择活动区域" :style='{width:formLabelWidth}'>
       
-        <el-option :label="item.room_text" v-for="(item,index) in bjlist" :key="index"></el-option>
+        <el-option :label="item.room_text" :value="item.room_id" v-for="(item,index) in bjlist" :key="index"></el-option>
          
        
       </el-select>
     </el-form-item>
      <el-form-item label="课程名"  >
-      <el-select :value="form.region1" placeholder="请选择活动区域" :style='{width:formLabelWidth}'>
-      <el-option :label="item.subject_text" v-for="(item,index) in bjlist" :key="index"></el-option>
+      <el-select  v-model="form.region1" placeholder="请选择活动区域" :style='{width:formLabelWidth}'>
+      <el-option :label="item.subject_text"  :value="item.subject_id"  v-for="(item,index) in bjlist" :key="index"></el-option>
        
       </el-select>
     </el-form-item>
@@ -94,7 +94,7 @@ import { mapState, mapActions } from "vuex"
           grade_id: ''
         },
         formLabelWidth: "90%",
-        
+        flag: true
       }
     },
     computed: {
@@ -104,35 +104,72 @@ import { mapState, mapActions } from "vuex"
     },
     methods: {
       // 确定 
-      handleOk() {
-        this.gradeUpdate({
-          grade_id: this.grade_id,
-          grade_name: this.form.region, 
-        })
+      handleOk() {  
+        this.dialogFormVisible = false
+        console.log(this.form.name,22222222222222222)
+        if(this.flag){   //如果input框禁用，让他走修改那个接口
+              this.gradeUpdate({
+                     grade_name: this.form.name, 
+                     grade_id: this.form.grade_id,
+                     room_id: this.form.region,
+                     subject_id:  this.form.region1
+                }).then(res=>
+                  this.getbj()
+                    
+                )
         // this.gradeUpdate('123')
- 
+        //应该重新调用一下渲染的jiekou
+        }
+        else{  //如果input没有禁用，走添加接口
+        console.log(this.form.region1)
+           this.gradeAdd({
+                     grade_name: this.form.name, 
+                     room_id:this.form.region,
+                     subject_id:this.form.region1,
+                }).then(res=>
+                  this.getbj()
+                           
+                )  
+        }
       },
       handleEdit(index, row) {
+        this.flag=true;
         this.dialogFormVisible = true
-        this.grade_id = row.grade_id
+        this.form.grade_id = row.grade_id
         console.log(row);
         this.form.name=row.grade_name
         this.form.region=row.room_text
          this.form.region1=row.subject_text
       },
       handleDelete(index, row) {
-        console.log(index, row);
+        this.grade_id=row.grade_id
+        console.log(this.grade_id)
+        let params={}
+        params.grade_id=row.grade_id
+        this.gradeDelete(params)
+          this.getbj()
+
+      },
+      addfn(){
+         this.form.name="", 
+                 this.form.grade_id="",
+                    this.form.region="",
+                    this.form.region1=""
+             this.dialogFormVisible = true,
+            this.flag=false;
+            
       },
        ...mapActions({
        getbj: "bjgl/grades",
-       gradeUpdate: 'bjgl/gradeUpdate'
+       gradeUpdate: 'bjgl/gradeUpdate',
+       gradeDelete:"bjgl/gradeDelete",
+       gradeAdd:"bjgl/gradeAdd"
     })
 
 
     },
     mounted(){
        this.getbj()
-      
     }
     
   }

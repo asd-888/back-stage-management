@@ -20,29 +20,27 @@ export function grade() {
 }
 
 //删除班级接口
-export function gradeDelete(id) {
-    return request({
-        url: "/manger/grade/delete",
-        method: "delete",
-        params: { grade_id: id }
-    })
+export function gradeDelete(data) {
+    let {grade_id} = data
+    console.log('----------------------', grade_id)
+    return request.delete('/manger/grade/update', { data: {grade_id} })
 }
 
 //更新班级接口
-export function gradeUpdate(grade_id, grade_name, subject_id, room_id) {
+export function gradeUpdate(data) {
     return request({
-        url: "/manger/grade/update",
-        method: "put",
-        params: { grade_id, grade_name, subject_id, room_id }
-    })
+        url: `/manger/grade/update`,
+        method: 'put',
+        data
+      })
 }
 
 //添加班级接口
-export function gradeAdd(grade_name, room_id, subject_id) {
+export function gradeAdd(data) {
     return request({
-        url: "//manger/grade",
+        url: "/manger/grade",
         method: "post",
-        params: { grade_name, room_id, subject_id }
+        data
     })
 }
 
