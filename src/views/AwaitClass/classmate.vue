@@ -90,7 +90,7 @@ export default {
   created() {
     // this.grade_name = localStorage.getItem('grade_name')
     // ,grade_name:localStorage.getItem('grade_name')
-    this.studentPaperList({ grade_id: this.$route.query.grade_id })
+    
   }
 }
 </script>

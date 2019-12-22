@@ -22,10 +22,10 @@ export function gradeList() {
   })
 }
 
-export function studentPaperList(params) {
+export function studentPaperList(query) {
   return request({
     url: '/exam/student',
     method: 'get',
-    params
+    params:query
   })
 }

@@ -172,7 +172,38 @@ export const asyncRoutes = [
       }
     ]
   },
-
+  // 考试管理
+  {
+    path: '/examination',
+    component: Layout,
+    redirect: '/examination/addexamination',
+    alwaysShow: true, // will always show the root menu
+    name: 'Examination',
+    meta: {
+      title: '考试管理',
+      icon: 'example',
+    },
+    children: [
+      {
+        path: 'addexamination',
+        component: () => import('@/views/examination/AddExamination'),
+        name: 'AddExamination',
+        meta: {
+          title: '添加考试',
+          roles: ['admin'] // or you can only set roles in sub nav
+        }
+      },
+      {
+        path: 'examinationlist',
+        component: () => import('@/views/examination/ExaminationList'),
+        name: 'ExaminationList',
+        meta: {
+          title: '考试列表'
+          // if do not set roles, means: this page does not require permission
+        }
+      }
+    ]
+  },
   {
     path: '/icon',
     component: Layout,
@@ -225,9 +256,10 @@ export const asyncRoutes = [
   },
   // 阅卷管理
   {
-    path: '/examination',
+    
+    path: '/marking',
     component: Layout,
-    redirect: '/examination/Await',
+    redirect: '/marking/Await',
     alwaysShow: true,
     meta: {
       title: '阅卷管理',
@@ -235,13 +267,14 @@ export const asyncRoutes = [
     },
     children: [
       {
-        path: 'await',
-        component: () => import('@/views/exam/Await'),
+        path: 'classlist',
+        component: () => import('@/views/AwaitClass/ClassList'),
         meta: { title: '待批班级', icon: 'edit' }
       },
       {
-        path: '/exam/classmate',
-        component: () => import('@/views/exam/classmate')
+        path: '/marking/classmate',
+        name:'classmate',
+        component: () => import('@/views/AwaitClass/Classmate')
       }
     ]
   },
