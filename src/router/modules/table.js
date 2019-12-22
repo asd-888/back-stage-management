@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2019-12-18 19:03:56
+ * @LastEditTime : 2019-12-19 17:06:45
+ * @LastEditors  : Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \calle:\实训\新建文件夹\back-stage-management\src\router\modules\table.js
+ */
 /** When your routing table is too long, you can split it into small modules **/
 
 import Layout from '@/layout'
@@ -35,7 +43,8 @@ const tableRouter = {
       component: () => import('@/views/table/complex-table'),
       name: 'ComplexTable',
       meta: { title: 'complexTable' }
-    }
+    },
+ 
   ]
 }
 export default tableRouter

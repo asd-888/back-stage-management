@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2019-12-18 19:03:56
+ * @LastEditTime : 2019-12-20 09:05:22
+ * @LastEditors  : Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \新建文件夹\back-stage-management\src\main.js
+ */
 import Vue from 'vue'
 
 import Cookies from 'js-cookie'
@@ -19,6 +27,8 @@ import './permission' // permission control
 import './utils/error-log' // error log
 
 import * as filters from './filters' // global filters
+
+
 
 /**
  * If you don't want to use mock-server
@@ -43,8 +53,11 @@ Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key])
 })
 
-Vue.config.productionTip = false
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 
+Vue.config.productionTip = false
+Vue.use(ElementUI);
 new Vue({
   el: '#app',
   router,

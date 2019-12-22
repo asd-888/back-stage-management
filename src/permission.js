@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2019-12-18 19:03:56
+ * @LastEditTime: 2019-12-19 09:09:31
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: \calle:\实训\新建文件夹\back-stage-management\src\permission.js
+ */
 import router from './router'
 import store from './store'
 import { Message } from 'element-ui'
@@ -9,7 +17,7 @@ import getPageTitle from '@/utils/get-page-title'
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
 const whiteList = ['/login', '/auth-redirect'] // no redirect whitelist
-
+ 
 router.beforeEach(async(to, from, next) => {
   // start progress bar
   NProgress.start()
@@ -47,10 +55,11 @@ router.beforeEach(async(to, from, next) => {
           next({ ...to, replace: true })
         } catch (error) {
           // remove token and go to login page to re-login
-          await store.dispatch('user/resetToken')
-          Message.error(error || 'Has Error')
-          next(`/login?redirect=${to.path}`)
-          NProgress.done()
+          // await store.dispatch('user/resetToken')
+          // Message.error(error || 'Has Error')
+          // next(`/login?redirect=${to.path}`)
+          // NProgress.done()
+          console.log('error...',error)
         }
       }
     }
