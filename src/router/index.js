@@ -225,9 +225,9 @@ export const asyncRoutes = [
   },
   // 阅卷管理
   {
-    path: '/exam',
+    path: '/examination',
     component: Layout,
-    redirect: '/exam/Await',
+    redirect: '/examination/Await',
     alwaysShow: true,
     meta: {
       title: '阅卷管理',
