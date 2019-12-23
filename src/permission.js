@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2019-12-18 19:03:56
+ * @LastEditTime : 2019-12-23 19:28:02
+ * @LastEditors  : 席鹏昊
+ * @Description: In User Settings Edit
+ * @FilePath: \calle:\实训\新建文件夹\back-stage-management\src\permission.js
+ */
 import router from './router'
 import store from './store'
 import { Message } from 'element-ui'
@@ -9,7 +17,7 @@ import getPageTitle from '@/utils/get-page-title'
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
 const whiteList = ['/login', '/auth-redirect'] // no redirect whitelist
-
+ 
 router.beforeEach(async(to, from, next) => {
   // start progress bar
   NProgress.start()
@@ -55,6 +63,10 @@ router.beforeEach(async(to, from, next) => {
           // Message.error(error || 'Has Error')
           // next(`/login?redirect=${to.path}`)
           // NProgress.done()
+<<<<<<< HEAD
+=======
+          console.log('error...',error)
+>>>>>>> 773942151334d6589e839e73bebd5d25c109afa1
         }
       }
     }

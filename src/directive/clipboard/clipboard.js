@@ -1,3 +1,10 @@
+/*
+ * @Author: 席鹏昊
+ * @Date: 2019-12-23 19:13:10
+ * @LastEditors: 席鹏昊
+ * @LastEditTime: 2019-12-23 19:33:58
+ * @Description: 
+ */
 // Inspired by https://github.com/Inndy/vue-clipboard2
 const Clipboard = require('clipboard')
 if (!Clipboard) {

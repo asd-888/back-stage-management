@@ -48,12 +48,16 @@
         </el-form-item>
       </el-tooltip>
 
+<<<<<<< HEAD
       <el-button
         :loading="loading"
         type="primary"
         style="width:100%;margin-bottom:30px;"
         @click.native.prevent="handleLogin"
       >
+=======
+      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">
+>>>>>>> 773942151334d6589e839e73bebd5d25c109afa1
         {{ $t('login.logIn') }}
       </el-button>
 
@@ -86,7 +90,11 @@
 </template>
 
 <script>
+<<<<<<< HEAD
 import { validUsername } from '@/utils/validate'
+=======
+// import { validUsername } from '@/utils/validate'
+>>>>>>> 773942151334d6589e839e73bebd5d25c109afa1
 import LangSelect from '@/components/LangSelect'
 import SocialSign from './components/SocialSignin'
 
@@ -95,15 +103,16 @@ export default {
   components: { LangSelect, SocialSign },
   data() {
     const validateUsername = (rule, value, callback) => {
-      if (!validUsername(value)) {
-        callback(new Error('Please enter the correct user name'))
+      if (!value) {
+        callback(new Error('您的用户名输入不对'))
       } else {
         callback()
       }
     }
     const validatePassword = (rule, value, callback) => {
-      if (value.length < 6) {
-        callback(new Error('The password can not be less than 6 digits'))
+       var pwdRegex = new RegExp('(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[^a-zA-Z0-9]).{8,30}');
+      if (!pwdRegex.test(value)) {
+        callback(new Error('您的密码输入不对'))
       } else {
         callback()
       }
@@ -151,18 +160,20 @@ export default {
     // window.removeEventListener('storage', this.afterQRScan)
   },
   methods: {
-    checkCapslock({ shiftKey, key } = {}) {
-      if (key && key.length === 1) {
-        if (shiftKey && (key >= 'a' && key <= 'z') || !shiftKey && (key >= 'A' && key <= 'Z')) {
-          this.capsTooltip = true
-        } else {
-          this.capsTooltip = false
-        }
-      }
-      if (key === 'CapsLock' && this.capsTooltip === true) {
-        this.capsTooltip = false
-      }
-    },
+    // checkCapslock({ shiftKey, key } = {}) {
+    //   if (key && key.length === 1) {
+    //     if (shiftKey && (key >= 'a' && key <= 'z') || !shiftKey && (key >= 'A' && key <= 'Z')) {
+    //       this.capsTooltip = true
+    //     } else {
+    //       this.capsTooltip = false
+    //     }
+    //   }
+    //   if (key === 'CapsLock' && this.capsTooltip === true) {
+    //     this.capsTooltip = false
+    //   }
+    // },
+
+   
     showPwd() {
       if (this.passwordType === 'password') {
         this.passwordType = ''
@@ -173,6 +184,22 @@ export default {
         this.$refs.password.focus()
       })
     },
+    // handleLogin() {
+    //   this.$refs.loginForm.validate(valid => {
+    //     if (valid) {
+    //       console.log(this.loginForm,"this.loginForm")
+    //       this.loading = true
+    //       try{
+    //         await this.$store.dispatch('user/login', this.loginForm)
+    //         this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
+    //       }catch(e){}
+    //             this.loading = false
+    //     } else {
+    //       console.log('error submit!!')
+    //       return false
+    //     }
+    //   })
+    // },
     handleLogin() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
@@ -192,12 +219,14 @@ export default {
       })
     },
     getOtherQuery(query) {
-      return Object.keys(query).reduce((acc, cur) => {
-        if (cur !== 'redirect') {
-          acc[cur] = query[cur]
-        }
-        return acc
-      }, {})
+      // return Object.keys(query).reduce((acc, cur) => {
+      //   if (cur !== 'redirect') {
+      //     acc[cur] = query[cur]
+      //   }
+      //   return acc
+      // }, {})
+      delete query.redirect
+      return query
     }
     // afterQRScan() {
     //   if (e.key === 'x-admin-oauth-code') {

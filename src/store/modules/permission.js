@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2019-12-18 19:03:56
+ * @LastEditTime : 2019-12-23 19:38:54
+ * @LastEditors  : 席鹏昊
+ * @Description: In User Settings Edit
+ * @FilePath: \calle:\实训\新建文件夹\back-stage-management\src\store\modules\permission.js
+ */
 import { asyncRoutes, constantRoutes } from '@/router'
 
 /**
@@ -12,7 +20,7 @@ function hasPermission(roles, route) {
     return true
   }
 }
-
+ 
 /**
  * Filter asynchronous routing tables by recursion
  * @param routes asyncRoutes

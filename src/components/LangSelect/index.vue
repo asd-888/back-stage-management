@@ -1,3 +1,13 @@
+<<<<<<< HEAD
+=======
+<!--
+ * @Author: 席鹏昊
+ * @Date: 2019-12-23 19:13:10
+ * @LastEditors: 席鹏昊
+ * @LastEditTime: 2019-12-23 19:31:33
+ * @Description: 
+ -->
+>>>>>>> 773942151334d6589e839e73bebd5d25c109afa1
 <template>
   <el-dropdown trigger="click" class="international" @command="handleSetLanguage">
     <div>

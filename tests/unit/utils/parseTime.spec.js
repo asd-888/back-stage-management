@@ -1,3 +1,10 @@
+/*
+ * @Author: 席鹏昊
+ * @Date: 2019-12-23 19:13:09
+ * @LastEditors: 席鹏昊
+ * @LastEditTime: 2019-12-23 19:51:12
+ * @Description: 
+ */
 import { parseTime } from '@/utils/index.js'
 describe('Utils:parseTime', () => {
   const d = new Date('2018-07-13 17:54:01') // "2018-07-13 17:54:01"
