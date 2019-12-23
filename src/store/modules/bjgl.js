@@ -7,7 +7,7 @@ const state = {
 const mutations = {
     ADD_ERROR_LOG: (state, payload) => {
       state.bjlist=payload
-      console.log(state.bjlist)
+    
     },
   
   }
@@ -27,7 +27,7 @@ const mutations = {
   async gradeDelete({ commit }, payload) {
     console.log(payload)
    
-    let res =  await gradeDelete(payload)  //这里有问题，要么422要么500
+    let res =  await gradeDelete(payload)  //这里有问题，要么422要么500,现在已经解决
     console.log(res)
    
 },

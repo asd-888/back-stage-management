@@ -2,72 +2,122 @@
   <div>
     <h2>教室管理</h2>
     <div class="addClass">
-      <el-button type="primary" class="btn">添加教室</el-button>
+      <el-button type="primary" class="btn" @click="dialogFormVisible = true">+添加教室</el-button>
     </div>
 
     <div class="biaoge">
-      <el-table :data="tableData" style="width: 100%" class="el">
-        <el-table-column label="日期" width="180">
+      <el-table :data=" jslist" style="width: 100%" class="el">
+        <el-table-column label="日期" width="500px">
           <template slot-scope="scope">
             <i class="el-icon-time"></i>
-            <span style="margin-left: 10px">{{ scope.row.date }}</span>
+            <span style="margin-left: 10px">{{ scope.row.room_text}}</span>
           </template>
         </el-table-column>
-        <el-table-column label="姓名" width="180">
-          <template slot-scope="scope">
-            <el-popover trigger="hover" placement="top">
-              <p>姓名: {{ scope.row.name }}</p>
-              <p>住址: {{ scope.row.address }}</p>
-              <div slot="reference" class="name-wrapper">
-                <el-tag size="medium">{{ scope.row.name }}</el-tag>
-              </div>
-            </el-popover>
-          </template>
-        </el-table-column>
+
         <el-table-column label="操作">
           <template slot-scope="scope">
-            <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-            <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+            <span @click="handleDelete(scope.$index, scope.row)">删除</span>
           </template>
         </el-table-column>
       </el-table>
     </div>
+    <!-- 下面是弹框 -->
+
+    <el-dialog title="添加班级" :visible.sync="dialogFormVisible">
+      <el-form :model="form" label-position="top">
+        <el-form-item
+          label="教室管理"
+          :label-width="formLabelWidth"
+          :rules="[
+      { required: true, message: '请输入教室号'},
+      { type: 'number', message: '教室号必须为数字值'}
+    ]"
+        >
+          <el-input v-model="form.name" autocomplete="off" placeholder="教室名"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button type="primary" @click="queding">确 定</el-button>
+      </div>
+    </el-dialog>
+
+    <!-- 点击删除的弹窗 -->
+    
+    <el-dialog title="提示" :visible.sync="dialogVisible1" width="30%" :before-close="handleClose">
+      <span>你确定要删除此教室吗</span>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible1 = false">取 消</el-button>
+        <el-button type="primary" @click="shanchu">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
 export default {
-    data() {
-      return {
-        tableData: [{
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }]
-      }
-    },
-    methods: {
-      handleEdit(index, row) {
-        console.log(index, row);
+  data() {
+    return {
+      dialogTableVisible: false,
+      dialogFormVisible: false,
+      dialogVisible1: false,
+      shanchuid:"",
+      form: {
+        name: "",
+        region: "",
+        date1: "",
+        date2: "",
+        delivery: false,
+        type: [],
+        resource: "",
+        desc: ""
       },
-      handleDelete(index, row) {
-        console.log(index, row);
-      }
+      formLabelWidth: "120px"
+    };
+  },
+
+  methods: {
+    handleDelete(index, row) {
+      console.log(row);
+      this.shanchuid=row.room_id
+       this.dialogVisible1=true;
+    },
+      handleClose(done) {
+        this.$confirm('确认关闭？')
+          .then(_ => {
+            done();
+          })
+          .catch(_ => {});
+      },
+    ...mapActions({
+      getjs: "jsgl/roomAll",
+      roomAdd: "jsgl/roomAdd",
+      roomDelete:"jsgl/roomDelete"
+    }),
+    queding() {
+      this.dialogFormVisible = false;
+      this.roomAdd({ room_text: this.form.name }).then(res => {
+        this.getjs();
+      });
+    },
+    shanchu(){
+      this.dialogVisible1 = false
+       let params={}
+        params.room_id=this.shanchuid
+         this.roomDelete(params)
+        this.getjs()
+
     }
-
-
+  },
+  computed: {
+    ...mapState({
+      jslist: state => state.jsgl.jslist
+    })
+  },
+  created() {
+    this.getjs();
+  }
 };
 </script>
 
@@ -87,6 +137,7 @@ h2 {
   margin-top: 15px;
   background: #789aff;
   border: 1px solid #789aff;
+  width: 150px;
 }
 .biaoge {
   width: 90%;

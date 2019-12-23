@@ -126,7 +126,7 @@ import { mapState, mapActions } from "vuex"
                      grade_name: this.form.name, 
                      room_id:this.form.region,
                      subject_id:this.form.region1,
-                }).then(res=>
+                }).then(res=> //.then是说上面代码执行完后再执行.then的方法，res是代表上面的方法成功后
                   this.getbj()
                            
                 )  

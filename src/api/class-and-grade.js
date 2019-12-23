@@ -22,7 +22,7 @@ export function grade() {
 //删除班级接口
 export function gradeDelete(data) {
     let {grade_id} = data
-    console.log('----------------------', grade_id)
+   // console.log('----------------------', grade_id)
     return request.delete('/manger/grade/update', { data: {grade_id} })
 }
 
@@ -45,12 +45,9 @@ export function gradeAdd(data) {
 }
 
 //删除教室接口
-export function roomDelete(room_id) {
-    return request({
-        url: "/manger/room/delete",
-        method: "delete",
-        params: { room_id }
-    })
+export function roomDelete(data) {
+    let {room_id} = data
+    return request.delete('/manger/room/delete', { data: {room_id} })
 }
 
 //更新教室
@@ -63,11 +60,11 @@ export function roomUpdate(room_id, room_text) {
 }
 
 //添加教室
-export function roomAdd(room_text) {
+export function roomAdd(data) {
     return request({
         url: "/manger/room",
         method: "post",
-        params: { room_text }
+        data 
     })
 }
 
