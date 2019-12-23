@@ -1,7 +1,7 @@
 <template>
   <div :class="classObj" class="app-wrapper">
     <div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside" />
-    <sidebar class="sidebar-container" />
+    <sidebar class="sidebar-container" id="sidebar-container"/>
     <div :class="{hasTagsView:needTagsView}" class="main-container">
       <div :class="{'fixed-header':fixedHeader}">
         <navbar />
@@ -66,13 +66,13 @@ export default {
     position: relative;
     height: 100%;
     width: 100%;
-
+    background: #eee;
+    z-index: 99;
     &.mobile.openSidebar {
       position: fixed;
       top: 0;
     }
   }
-
   .drawer-bg {
     background: #000;
     opacity: 0.3;
@@ -99,4 +99,5 @@ export default {
   .mobile .fixed-header {
     width: 100%;
   }
+ 
 </style>

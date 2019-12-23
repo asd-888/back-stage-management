@@ -1,3 +1,10 @@
+/*
+ * @Author: 席鹏昊
+ * @Date: 2019-12-18 15:27:30
+ * @LastEditors  : 席鹏昊
+ * @LastEditTime : 2019-12-19 10:29:17
+ * @Description: 
+ */
 import Cookies from 'js-cookie'
 import { getLanguage } from '@/lang/index'
 
@@ -44,6 +51,7 @@ const actions = {
     commit('TOGGLE_SIDEBAR')
   },
   closeSideBar({ commit }, { withoutAnimation }) {
+    console.log(withoutAnimation,"withoutAnimation")
     commit('CLOSE_SIDEBAR', withoutAnimation)
   },
   toggleDevice({ commit }, device) {

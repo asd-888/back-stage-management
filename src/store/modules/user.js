@@ -12,6 +12,7 @@ const state = {
 
 const mutations = {
   SET_TOKEN: (state, token) => {
+    console.log(token,"token")
     state.token = token
   },
   SET_INTRODUCTION: (state, introduction) => {
@@ -25,7 +26,7 @@ const mutations = {
   },
   SET_ROLES: (state, roles) => {
     state.roles = roles
-  }
+  } 
 }
 
 const actions = {
@@ -34,9 +35,9 @@ const actions = {
 
     const { username, password } = userInfo
     let res = await login({user_name:username,user_pwd:password});//给asios 发送参数
-    // commit('SET_TOKEN', res.token)
+    commit('SET_TOKEN', res.token)
     setToken(res.token)
-
+    console.log(res,"res+++++")
     // return new Promise((resolve, reject) => {
     //   login({ username: username.trim(), password: password }).then(response => {
     //     const { data } = response

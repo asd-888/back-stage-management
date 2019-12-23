@@ -33,7 +33,7 @@ router.beforeEach(async(to, from, next) => {
 
   //获取cookies
   const hasToken = getToken()
-  
+
   //判断cookies 拿没拿到 有走if  没有走else
   if (hasToken) {
 
