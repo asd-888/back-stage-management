@@ -1,3 +1,10 @@
+<!--
+ * @Author: 席鹏昊
+ * @Date: 2019-12-23 19:13:09
+ * @LastEditors: 席鹏昊
+ * @LastEditTime: 2019-12-23 19:43:12
+ * @Description: 
+ -->
 <template>
   <div class="components-container">
     <el-drag-select v-model="value" style="width:500px;" multiple placeholder="请选择">

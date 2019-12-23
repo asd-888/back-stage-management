@@ -1,3 +1,4 @@
+
 import Vue from 'vue'
 import Router from 'vue-router'
 
@@ -198,6 +199,64 @@ export const asyncRoutes = [
   tableRouter,
   testQuestionRouter, //试题管理
   test,
+    // 考试管理
+    {
+      path: '/examination',
+      component: Layout,
+      redirect: '/examination/addexamination',
+      alwaysShow: true, // will always show the root menu
+      name: 'Examination',
+      meta: {
+        title: '考试管理',
+        icon: 'example',
+      },
+      children: [
+        {
+          path: 'addexamination',
+          component: () => import('@/views/examination/AddExamination'),
+          name: 'AddExamination',
+          meta: {
+            title: '添加考试',
+            roles: ['admin'] // or you can only set roles in sub nav
+          }
+        },
+        {
+          path: 'examinationlist',
+          component: () => import('@/views/examination/ExaminationList'),
+          name: 'ExaminationList',
+          meta: {
+            title: '考试列表'
+            // if do not set roles, means: this page does not require permission
+          }
+        }
+      ]
+    },
+   
+    // 阅卷管理
+    {
+      
+      path: '/marking',
+      component: Layout,
+      redirect: '/marking/classlist',
+      alwaysShow: true,
+      meta: {
+        title: '阅卷管理',
+        icon: 'documentation'
+  
+      },
+      children: [
+        {
+          path: 'classlist',
+          component: () => import('@/views/AwaitClass/ClassList'),
+          meta: { title: '待批班级', icon: 'edit' }
+        },
+        {
+          path: '/marking/classmate',
+          name:'classmate',
+          component: () => import('@/views/AwaitClass/Classmate')
+        }
+      ]
+    },
   {
     path: '/example',
     component: Layout,
@@ -426,3 +485,8 @@ export function resetRouter() {
 }
 
 export default router
+
+
+
+
+
