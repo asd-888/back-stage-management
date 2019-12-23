@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2019-12-19 14:46:41
- * @LastEditTime : 2019-12-23 16:54:07
+ * @LastEditTime : 2019-12-23 17:07:38
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \calle:\实训\新建文件夹\back-stage-management\src\own\Own.vue
@@ -80,11 +80,12 @@
 import {Form} from 'element-ui';
 // import {Add} from '@/api/AddTest'
 import {mapState,mapActions,mutations} from 'vuex'
-//引入markdown
-import MarkDown from '../markdown/markdown'
+
+
 //element
 import ElementUI from 'element-ui'
 import { param } from '../../utils';
+//引入markdown
 import MarkdownEditor from '@/components/MarkdownEditor'
 
 const content = `
