@@ -1,73 +1,80 @@
 <!--
  * @Author: your name
- * @Date: 2019-12-21 08:01:09
- * @LastEditTime : 2019-12-22 15:23:36
+ * @Date: 2019-12-23 07:50:27
+ * @LastEditTime : 2019-12-23 16:10:37
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \新建文件夹\back-stage-management\src\views\markdown\markdown.vue
  -->
 <template>
-    <div class="markdown">
-        <mavon-editor 
-            v-model="content" 
-            ref="md" 
-            @change="change" 
-            style="min-height: 600px"
-        />
-
-        <!-- <button @click="submit">提交</button> -->
+  <div class="components-container">
+    
+    <div class="editor-container">
+      <el-alert
+        :closable="false"
+       
+        type="success"
+      />
+      <markdown-editor ref="markdownEditor" v-model="content4" :language="language" height="300px" />
     </div>
+
+    <!-- <el-button style="margin-top:80px;" type="primary" icon="el-icon-document" @click="getHtml">
+      Get HTML
+    </el-button>
+    <div v-html="html" /> -->
+  </div>
 </template>
+
 <script>
-// 导入组件 及 组件样式
-import { mavonEditor } from 'mavon-editor'
-import 'mavon-editor/dist/css/index.css'
+import MarkdownEditor from '@/components/MarkdownEditor'
 
+const content = `
+**This is test**
+
+* vue
+* element
+* webpack
+
+`
 export default {
-    name: "",
-        props: [],
-        components: {
-            mavonEditor,
-        },
-        data() {
-            return {
-                content:'',
-                html:'',
-                configs: {}
-            }
-        },
-        methods: {
-            // 将图片上传到服务器，返回地址替换到md中
-            $imgAdd(pos, $file){
-                let formdata = new FormData();
-
-                this.$upload.post('/上传接口地址', formdata).then(res => {
-                    console.log(res.data);
-                    this.$refs.md.$img2Url(pos, res.data);
-                }).catch(err => {
-                    console.log(err)
-                })
-            },
-            // 所有操作都会被解析重新渲染
-            change(value, render){
-                // render 为 markdown 解析后的结果[html]
-                this.html = render;
-            },
-            // 提交
-            // submit(){
-            //     console.log(this.content);
-            //       console.log(this.html);
-            //     this.$message.success('提交成功，已打印至控制台！');
-            // }
-        },
-        mounted() {
-
-        }
+  name: 'MarkdownDemo',
+  components: { MarkdownEditor },
+  data() {
+    return {
+      content1: content,
+      content2: content,
+      content3: content,
+      content4: content,
+      html: '',
+      languageTypeList: {
+        'en': 'en_US',
+        'zh': 'zh_CN',
+        'es': 'es_ES'
+      }
+    }
+  },
+  computed: {
+    language() {
+      return this.languageTypeList[this.$store.getters.language]
+    },
+   
+    
+  },
+  methods: {
+    // getHtml() {
+    //   this.html = this.$refs.markdownEditor.getHtml()
+    // //   console.log(this.html)
+    //   console.log(this.content4)
+    // }
+  }
 }
 </script>
-<style scoped lang="scss">
-.markdown{
-    width: 60%;
-    // height: 60px;
+
+<style scoped>
+/* .editor-container{
+  margin-bottom: 30px;
 }
+.tag-title{
+  margin-bottom: 5px;
+} */
 </style>

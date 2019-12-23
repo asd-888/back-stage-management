@@ -32,7 +32,7 @@ const actions = {
   // user login
   async login({ commit }, userInfo) { 
     console.log(userInfo,"userInfo")
-    const { username, password } = userInfo;
+    const { username, password} = userInfo;
 
     const res = await login({ user_name: username, user_pwd: password })
     
@@ -67,6 +67,7 @@ const actions = {
       //   }
         const roles=['admin']
         commit('SET_ROLES', roles)
+        // console.log(roles)
         // commit('SET_NAME', name)
         // commit('SET_AVATAR', avatar)
         // commit('SET_INTRODUCTION', introduction)
