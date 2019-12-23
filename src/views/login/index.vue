@@ -48,16 +48,12 @@
         </el-form-item>
       </el-tooltip>
 
-<<<<<<< HEAD
       <el-button
         :loading="loading"
         type="primary"
         style="width:100%;margin-bottom:30px;"
         @click.native.prevent="handleLogin"
       >
-=======
-      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">
->>>>>>> 773942151334d6589e839e73bebd5d25c109afa1
         {{ $t('login.logIn') }}
       </el-button>
 
@@ -90,11 +86,7 @@
 </template>
 
 <script>
-<<<<<<< HEAD
 import { validUsername } from '@/utils/validate'
-=======
-// import { validUsername } from '@/utils/validate'
->>>>>>> 773942151334d6589e839e73bebd5d25c109afa1
 import LangSelect from '@/components/LangSelect'
 import SocialSign from './components/SocialSignin'
 

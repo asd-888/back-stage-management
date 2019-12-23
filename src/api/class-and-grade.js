@@ -20,7 +20,6 @@ export function grade() {
 }
 
 //删除班级接口
-<<<<<<< HEAD
 export function gradeDelete(data) {
     let {grade_id} = data
    // console.log('----------------------', grade_id)
@@ -42,47 +41,13 @@ export function gradeAdd(data) {
         url: "/manger/grade",
         method: "post",
         data
-=======
-export function gradeDelete(id) {
-    return request({
-        url: "/manger/grade/delete",
-        method: "delete",
-        params: { grade_id: id }
-    })
-}
-
-//更新班级接口
-export function gradeUpdate(grade_id, grade_name, subject_id, room_id) {
-    return request({
-        url: "/manger/grade/update",
-        method: "put",
-        params: { grade_id, grade_name, subject_id, room_id }
-    })
-}
-
-//添加班级接口
-export function gradeAdd(grade_name, room_id, subject_id) {
-    return request({
-        url: "//manger/grade",
-        method: "post",
-        params: { grade_name, room_id, subject_id }
->>>>>>> 773942151334d6589e839e73bebd5d25c109afa1
     })
 }
 
 //删除教室接口
-<<<<<<< HEAD
 export function roomDelete(data) {
     let {room_id} = data
     return request.delete('/manger/room/delete', { data: {room_id} })
-=======
-export function roomDelete(room_id) {
-    return request({
-        url: "/manger/room/delete",
-        method: "delete",
-        params: { room_id }
-    })
->>>>>>> 773942151334d6589e839e73bebd5d25c109afa1
 }
 
 //更新教室
@@ -95,19 +60,11 @@ export function roomUpdate(room_id, room_text) {
 }
 
 //添加教室
-<<<<<<< HEAD
 export function roomAdd(data) {
     return request({
         url: "/manger/room",
         method: "post",
         data 
-=======
-export function roomAdd(room_text) {
-    return request({
-        url: "/manger/room",
-        method: "post",
-        params: { room_text }
->>>>>>> 773942151334d6589e839e73bebd5d25c109afa1
     })
 }
 
@@ -121,11 +78,7 @@ export function roomAll() {
 
 
 //获取已经分配教室的班级
-<<<<<<< HEAD
 export function grades() {
-=======
-export function grade() {
->>>>>>> 773942151334d6589e839e73bebd5d25c109afa1
     return request({
         url: "/manger/grade",
         method: "get"

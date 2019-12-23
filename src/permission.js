@@ -63,10 +63,6 @@ router.beforeEach(async(to, from, next) => {
           // Message.error(error || 'Has Error')
           // next(`/login?redirect=${to.path}`)
           // NProgress.done()
-<<<<<<< HEAD
-=======
-          console.log('error...',error)
->>>>>>> 773942151334d6589e839e73bebd5d25c109afa1
         }
       }
     }
