@@ -27,14 +27,14 @@ module.exports = {
   publicPath: '/',
   outputDir: 'dist',
   assetsDir: 'static',
-  lintOnSave:false,  //guan eslint
+  lintOnSave:true,  //guan eslint
   productionSourceMap: false,
   devServer: {
     port: port,
     open: true,
     overlay: {
       warnings: false,
-      errors: false
+      errors: true
     },
     proxy: {
       // change xxx-api/login => mock/login
