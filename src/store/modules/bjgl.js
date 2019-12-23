@@ -1,5 +1,5 @@
 import { grades,gradeUpdate,gradeDelete,gradeAdd} from "@/api/class-and-grade"
-
+//这是班级管理
 const state = {
     bjlist : [],
     
