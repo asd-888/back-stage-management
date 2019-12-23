@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2019-12-18 19:03:56
- * @LastEditTime: 2019-12-19 09:09:31
- * @LastEditors: your name
+ * @LastEditTime : 2019-12-23 19:28:02
+ * @LastEditors  : 席鹏昊
  * @Description: In User Settings Edit
  * @FilePath: \calle:\实训\新建文件夹\back-stage-management\src\permission.js
  */

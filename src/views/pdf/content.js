@@ -1,3 +1,10 @@
+/*
+ * @Author: 席鹏昊
+ * @Date: 2019-12-23 19:13:09
+ * @LastEditors: 席鹏昊
+ * @LastEditTime: 2019-12-23 19:49:37
+ * @Description: 
+ */
 const title = 'Plans for the Next Iteration of Vue.js'
 
 const content = `<p>Last week at<a href="https://vuejs.london/summary" rel="nofollow">Vue.js London</a>I gave a brief sneak peek of what’s coming in the next major version of Vue. This post provides an in-depth overview of the plan.</p>

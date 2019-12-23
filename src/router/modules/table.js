@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2019-12-18 19:03:56
- * @LastEditTime : 2019-12-19 17:06:45
- * @LastEditors  : Please set LastEditors
+ * @LastEditTime : 2019-12-23 18:37:29
+ * @LastEditors  : 席鹏昊
  * @Description: In User Settings Edit
  * @FilePath: \calle:\实训\新建文件夹\back-stage-management\src\router\modules\table.js
  */

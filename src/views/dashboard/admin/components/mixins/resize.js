@@ -1,3 +1,10 @@
+/*
+ * @Author: 席鹏昊
+ * @Date: 2019-12-23 19:13:09
+ * @LastEditors: 席鹏昊
+ * @LastEditTime: 2019-12-23 19:45:09
+ * @Description: 
+ */
 import { debounce } from '@/utils'
 
 export default {

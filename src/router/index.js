@@ -1,3 +1,4 @@
+
 import Vue from 'vue'
 import Router from 'vue-router'
 
@@ -13,6 +14,9 @@ import tableRouter from './modules/table'
 import nestedRouter from './modules/nested'
 // 试题管理
 import testQuestionRouter from './modules/testquestion'
+
+//试题管理
+import test from "./modules/test"
 /**
  * Note: sub-menu only appear when route children.length >= 1
  * Detail see: https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
@@ -194,7 +198,65 @@ export const asyncRoutes = [
   nestedRouter,
   tableRouter,
   testQuestionRouter, //试题管理
-
+  test,
+    // 考试管理
+    {
+      path: '/examination',
+      component: Layout,
+      redirect: '/examination/addexamination',
+      alwaysShow: true, // will always show the root menu
+      name: 'Examination',
+      meta: {
+        title: '考试管理',
+        icon: 'example',
+      },
+      children: [
+        {
+          path: 'addexamination',
+          component: () => import('@/views/examination/AddExamination'),
+          name: 'AddExamination',
+          meta: {
+            title: '添加考试',
+            roles: ['admin'] // or you can only set roles in sub nav
+          }
+        },
+        {
+          path: 'examinationlist',
+          component: () => import('@/views/examination/ExaminationList'),
+          name: 'ExaminationList',
+          meta: {
+            title: '考试列表'
+            // if do not set roles, means: this page does not require permission
+          }
+        }
+      ]
+    },
+   
+    // 阅卷管理
+    {
+      
+      path: '/marking',
+      component: Layout,
+      redirect: '/marking/classlist',
+      alwaysShow: true,
+      meta: {
+        title: '阅卷管理',
+        icon: 'documentation'
+  
+      },
+      children: [
+        {
+          path: 'classlist',
+          component: () => import('@/views/AwaitClass/ClassList'),
+          meta: { title: '待批班级', icon: 'edit' }
+        },
+        {
+          path: '/marking/classmate',
+          name:'classmate',
+          component: () => import('@/views/AwaitClass/classmate')
+        }
+      ]
+    },
   {
     path: '/example',
     component: Layout,
@@ -424,3 +486,8 @@ export function resetRouter() {
 }
 
 export default router
+
+
+
+
+

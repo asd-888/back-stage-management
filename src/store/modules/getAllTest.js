@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2019-12-20 19:04:11
- * @LastEditTime : 2019-12-20 19:25:41
+ * @LastEditTime : 2019-12-23 10:52:15
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \新建文件夹\back-stage-management\src\store\modules\getAllTest.js
@@ -16,7 +16,7 @@ const state={
 const mutations={
     newGetAll(state,payload){
         state.getAllData=payload
-        console.log(payload)
+        // console.log(payload)
 
     }       
 }

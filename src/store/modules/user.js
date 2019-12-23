@@ -25,18 +25,18 @@ const mutations = {
   },
   SET_ROLES: (state, roles) => {
     state.roles = roles
-  }
-} 
+  } 
+}
 
 const actions = {
   // user login
-  async login({ commit }, userInfo) { 
-    console.log(userInfo,"userInfo")
-    const { username, password } = userInfo;
+ async login({ commit }, userInfo) {
 
-    const res = await login({ user_name: username, user_pwd: password })
-    
+    const { username, password } = userInfo
+    let res = await login({user_name:username,user_pwd:password});//给asios 发送参数
+    commit('SET_TOKEN', res.token)
     setToken(res.token)
+    console.log(res,"res+++++")
     // return new Promise((resolve, reject) => {
     //   login({ username: username.trim(), password: password }).then(response => {
     //     const { data } = response
@@ -53,19 +53,19 @@ const actions = {
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
       // getInfo(state.token).then(response => {
-      //   const { data } = response
+        // const { data } = response
 
-      //   if (!data) {
-      //     reject('Verification failed, please Login again.')
-      //   }
+        // if (!data) {
+        //   reject('Verification failed, please Login again.')
+        // }
 
-      //   const { roles, name, avatar, introduction } = data
+        // const { roles, name, avatar, introduction } = data
 
-      //   // roles must be a non-empty array
-      //   if (!roles || roles.length <= 0) {
-      //     reject('getInfo: roles must be a non-null array!')
-      //   }
-        const roles=['admin']
+        // // roles must be a non-empty array
+        // if (!roles || roles.length <= 0) {
+        //   reject('getInfo: roles must be a non-null array!')
+        // }
+        const roles = ['admin']
         commit('SET_ROLES', roles)
         // commit('SET_NAME', name)
         // commit('SET_AVATAR', avatar)

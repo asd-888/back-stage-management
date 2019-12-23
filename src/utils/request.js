@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2019-12-18 19:03:56
- * @LastEditTime : 2019-12-20 12:11:45
- * @LastEditors  : Please set LastEditors
+ * @LastEditTime : 2019-12-23 19:41:05
+ * @LastEditors  : 席鹏昊
  * @Description: In User Settings Edit
  * @FilePath: \calle:\实训\新建文件夹\back-stage-management\src\utils\request.js
  */
@@ -33,7 +33,6 @@ service.interceptors.request.use(
   },
   error => {
     // do something with request error
-    console.log(error) // for debug
     return Promise.reject(error)
   }
 )

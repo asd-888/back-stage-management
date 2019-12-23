@@ -1,6 +1,16 @@
+/*
+ * @Author: 席鹏昊
+ * @Date: 2019-12-18 15:24:04
+ * @LastEditors  : 席鹏昊
+ * @LastEditTime : 2019-12-23 19:13:58
+ * @Description: 
+ */
 /**
  * Created by PanJiaChen on 16/11/18.
  */
+
+
+//票单验证组件
 
 /**
  * @param {string} path
@@ -15,6 +25,7 @@ export function isExternal(path) {
  * @returns {Boolean}
  */
 export function validUsername(str) {
+  console.log(str,"str")
   const valid_map = ['admin', 'editor']
   return valid_map.indexOf(str.trim()) >= 0
 }

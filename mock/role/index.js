@@ -1,3 +1,10 @@
+/*
+ * @Author: 席鹏昊
+ * @Date: 2019-12-23 19:13:10
+ * @LastEditors: 席鹏昊
+ * @LastEditTime: 2019-12-23 19:24:43
+ * @Description: 
+ */
 import Mock from 'mockjs'
 import { deepClone } from '../../src/utils/index.js'
 import { asyncRoutes, constantRoutes } from './routes.js'

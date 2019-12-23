@@ -1,3 +1,10 @@
+<!--
+ * @Author: 席鹏昊
+ * @Date: 2019-12-23 19:13:10
+ * @LastEditors: 席鹏昊
+ * @LastEditTime: 2019-12-23 19:30:24
+ * @Description: 
+ -->
 <template>
   <el-select ref="dragSelect" v-model="selectVal" v-bind="$attrs" class="drag-select" multiple v-on="$listeners">
     <slot />

@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2019-12-20 19:42:41
- * @LastEditTime : 2019-12-20 19:48:28
+ * @LastEditTime : 2019-12-23 10:52:03
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \新建文件夹\back-stage-management\src\store\modules\getClass.js
@@ -15,7 +15,7 @@ const state={
 const mutations={
     newClass(state,payload){
         state.getclass=payload
-        console.log(payload)
+        // console.log(payload)
 
     }       
 }
@@ -24,7 +24,7 @@ const actions={
     async GetClass({commit},payload){
         const res=await GetClass()
         commit('newClass',res.data)
-        console.log(res.data)
+        // console.log(res.data)
     }
 }
 

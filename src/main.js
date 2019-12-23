@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2019-12-18 19:03:56
- * @LastEditTime : 2019-12-20 09:05:22
- * @LastEditors  : Please set LastEditors
+ * @LastEditTime : 2019-12-23 19:27:42
+ * @LastEditors  : 席鹏昊
  * @Description: In User Settings Edit
  * @FilePath: \新建文件夹\back-stage-management\src\main.js
  */
@@ -22,7 +22,11 @@ import store from './store'
 import router from './router'
 
 import i18n from './lang' // internationalization
+
+//字体图标
 import './icons' // icon
+
+//路由守卫组件
 import './permission' // permission control
 import './utils/error-log' // error log
 
