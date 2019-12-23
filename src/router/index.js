@@ -11,7 +11,8 @@ import componentsRouter from './modules/components'
 import chartsRouter from './modules/charts'
 import tableRouter from './modules/table'
 import nestedRouter from './modules/nested'
-import test from "./modules/test"
+// 试题管理
+import testQuestionRouter from './modules/testquestion'
 /**
  * Note: sub-menu only appear when route children.length >= 1
  * Detail see: https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
@@ -70,6 +71,7 @@ export const constantRoutes = [
     component: () => import('@/views/error-page/401'),
     hidden: true
   },
+ 
   {
     path: '/',
     component: Layout,
@@ -95,6 +97,7 @@ export const constantRoutes = [
       }
     ]
   },
+  
   {
     path: '/guide',
     component: Layout,
@@ -121,7 +124,8 @@ export const constantRoutes = [
         meta: { title: 'profile', icon: 'user', noCache: true }
       }
     ]
-  }
+  },
+  
 ]
 
 /**
@@ -189,7 +193,8 @@ export const asyncRoutes = [
   chartsRouter,
   nestedRouter,
   tableRouter,
-  test,
+  testQuestionRouter, //试题管理
+
   {
     path: '/example',
     component: Layout,
@@ -259,6 +264,9 @@ export const asyncRoutes = [
       }
     ]
   },
+
+
+
 
   {
     path: '/error-log',

@@ -1,9 +1,10 @@
 /*
- * @Author: 席鹏昊
- * @Date: 2019-12-18 15:27:30
+ * @Author: your name
+ * @Date: 2019-12-18 19:03:56
+ * @LastEditTime : 2019-12-23 18:35:08
  * @LastEditors  : 席鹏昊
- * @LastEditTime : 2019-12-18 16:05:55
- * @Description: 
+ * @Description: In User Settings Edit
+ * @FilePath: \新建文件夹\back-stage-management\src\main.js
  */
 import Vue from 'vue'
 
@@ -31,6 +32,8 @@ import './utils/error-log' // error log
 
 import * as filters from './filters' // global filters
 
+
+
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api
@@ -39,12 +42,10 @@ import * as filters from './filters' // global filters
  * Currently MockJs will be used in the production environment,
  * please remove it before going online! ! !
  */
-
-//模拟数据
-// import { mockXHR } from '../mock'
-// if (process.env.NODE_ENV === 'production') {
-//   mockXHR()
-// }
+import { mockXHR } from '../mock'
+if (process.env.NODE_ENV === 'production') {
+  mockXHR()
+}
 
 Vue.use(Element, {
   size: Cookies.get('size') || 'medium', // set element-ui default size
@@ -56,8 +57,11 @@ Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key])
 })
 
-Vue.config.productionTip = false
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 
+Vue.config.productionTip = false
+Vue.use(ElementUI);
 new Vue({
   el: '#app',
   router,

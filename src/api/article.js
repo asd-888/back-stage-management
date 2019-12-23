@@ -1,8 +1,8 @@
 /*
  * @Author: 席鹏昊
- * @Date: 2019-12-18 15:24:04
- * @LastEditors  : 席鹏昊
- * @LastEditTime : 2019-12-19 13:55:38
+ * @Date: 2019-12-23 18:32:30
+ * @LastEditors: 席鹏昊
+ * @LastEditTime: 2019-12-23 18:36:08
  * @Description: 
  */
 import request from '@/utils/request'
@@ -14,7 +14,6 @@ export function fetchList(query) {
     params: query
   })
 }
-
 
 export function fetchArticle(id) {
   return request({

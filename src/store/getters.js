@@ -1,11 +1,11 @@
 /*
- * @Author: 席鹏昊
- * @Date: 2019-12-18 15:27:30
+ * @Author: your name
+ * @Date: 2019-12-18 19:03:56
+ * @LastEditTime : 2019-12-23 18:38:21
  * @LastEditors  : 席鹏昊
- * @LastEditTime : 2019-12-23 15:11:18
- * @Description: 
+ * @Description: In User Settings Edit
+ * @FilePath: \新建文件夹\back-stage-management\src\store\getters.js
  */
-
 const getters = {
   sidebar: state => state.app.sidebar,
   language: state => state.app.language,
@@ -26,5 +26,6 @@ const getters = {
   examList: state => state.examineTest.examList,//这是所有考试类型
   getQuestionsList: state => state.examineTest.getQuestionsList,//获取所有的试题
   fortUser: state => state.addQuestions.user, //获取当前用户的信息
+  AddTestData:state => state.AddTest.AddTestData,
 }
 export default getters

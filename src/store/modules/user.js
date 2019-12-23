@@ -12,7 +12,6 @@ const state = {
 
 const mutations = {
   SET_TOKEN: (state, token) => {
-    console.log(token,"token")
     state.token = token
   },
   SET_INTRODUCTION: (state, introduction) => {

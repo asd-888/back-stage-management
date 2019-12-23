@@ -1,8 +1,8 @@
 /*
  * @Author: 席鹏昊
- * @Date: 2019-12-18 15:24:04
+ * @Date: 2019-12-23 18:32:30
  * @LastEditors: 席鹏昊
- * @LastEditTime: 2019-12-19 10:58:43
+ * @LastEditTime: 2019-12-23 18:36:15
  * @Description: 
  */
 import request from '@/utils/request'
@@ -16,7 +16,6 @@ export function searchUser(name) {
 }
 
 export function transactionList(query) {
-  console.log(query,"sss")
   return request({
     url: '/transaction/list',
     method: 'get',

@@ -1,9 +1,10 @@
 /*
- * @Author: 席鹏昊
- * @Date: 2019-12-18 15:24:04
+ * @Author: your name
+ * @Date: 2019-12-18 19:03:56
+ * @LastEditTime : 2019-12-23 18:40:18
  * @LastEditors  : 席鹏昊
- * @LastEditTime : 2019-12-23 08:47:20
- * @Description: 
+ * @Description: In User Settings Edit
+ * @FilePath: \calle:\实训\新建文件夹\back-stage-management\src\utils\request.js
  */
 import axios from 'axios'
 import { MessageBox, Message } from 'element-ui'
@@ -12,10 +13,7 @@ import { getToken } from '@/utils/auth'
 
 // create an axios instance
 const service = axios.create({
-  // baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
-
-  baseURL:"http://169.254.19.13:7002",//连接后台
-  
+  baseURL:'http://169.254.19.13:7002', // url = base url + request url
   // withCredentials: true, // send cookies when cross-domain requests
   timeout: 5000 // request timeout
 })

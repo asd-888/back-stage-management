@@ -1,8 +1,8 @@
 /*
  * @Author: 席鹏昊
- * @Date: 2019-12-18 15:27:30
- * @LastEditors  : 席鹏昊
- * @LastEditTime : 2019-12-19 10:29:17
+ * @Date: 2019-12-23 18:32:29
+ * @LastEditors: 席鹏昊
+ * @LastEditTime: 2019-12-23 18:38:37
  * @Description: 
  */
 import Cookies from 'js-cookie'
@@ -51,7 +51,6 @@ const actions = {
     commit('TOGGLE_SIDEBAR')
   },
   closeSideBar({ commit }, { withoutAnimation }) {
-    console.log(withoutAnimation,"withoutAnimation")
     commit('CLOSE_SIDEBAR', withoutAnimation)
   },
   toggleDevice({ commit }, device) {
