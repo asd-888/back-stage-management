@@ -73,7 +73,7 @@ export default {
       // this.$router.push(`/examination/classmate?grade_id=${row.grade_id}`)
       // this.$router.push({name: '/examination/classmate', params: {grade_id: row.grade_id}})
       this.$router.push({
-        path: '/examination/classmate',
+        path: '/marking/classmate',
         // query:{
         //     grade_id: row.grade_id
         // }

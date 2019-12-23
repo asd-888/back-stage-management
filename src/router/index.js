@@ -259,11 +259,12 @@ export const asyncRoutes = [
     
     path: '/marking',
     component: Layout,
-    redirect: '/marking/Await',
+    redirect: '/marking/classlist',
     alwaysShow: true,
     meta: {
       title: '阅卷管理',
-      icon: 'example'
+      icon: 'documentation'
+
     },
     children: [
       {
