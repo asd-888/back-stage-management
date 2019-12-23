@@ -66,21 +66,13 @@ export default {
     position: relative;
     height: 100%;
     width: 100%;
-<<<<<<< HEAD
     background: #eee;
     z-index: 99;
-=======
-
->>>>>>> d0e0bee788349b108ce5f0b1d1a47420246a5de1
     &.mobile.openSidebar {
       position: fixed;
       top: 0;
     }
   }
-<<<<<<< HEAD
-=======
-
->>>>>>> d0e0bee788349b108ce5f0b1d1a47420246a5de1
   .drawer-bg {
     background: #000;
     opacity: 0.3;
