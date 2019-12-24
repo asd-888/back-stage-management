@@ -1,8 +1,9 @@
+import { condition } from '../../api/tryTopic';
 /*
  * @Author: 席鹏昊
  * @Date: 2019-12-20 08:54:45
- * @LastEditors  : 席鹏昊
- * @LastEditTime : 2019-12-20 08:57:03
+ * @LastEditors  : Please set LastEditors
+ * @LastEditTime : 2019-12-24 14:35:42
  * @Description: 
  */
 
@@ -34,9 +35,13 @@
       {
         path: 'examinetest',
         component: () => import('@/views/test/examineTest'),
-        name: 'examineTest',
-        meta: { title: '查看试题' }
+        name: 'examineTest',  
+        meta: { title: '试题分类' }
       },
+      {
+        path: '/examinetest/condition',
+        component: () => import('@/views/testSon/condition'),
+      }
       
     ]
   }

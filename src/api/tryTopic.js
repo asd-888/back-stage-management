@@ -3,8 +3,8 @@
 /*
  * @Author: 席鹏昊
  * @Date: 2019-12-20 14:02:29
- * @LastEditors  : 席鹏昊
- * @LastEditTime : 2019-12-23 16:47:47
+ * @LastEditors  : Please set LastEditors
+ * @LastEditTime : 2019-12-24 17:15:50
  * @Description: 
  */
 
@@ -74,6 +74,7 @@ export function examType() {
 
 //按条件获取试题
 export function condition(params){
+    console.log(params,"params")
     return request({
         url : "/exam/questions/condition",
         method : "get",
