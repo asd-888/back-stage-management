@@ -54,7 +54,7 @@
     <el-form-item label="教室号"   :rules="[
       { required: true, message: '请输入教室号'}
      
-    ]" > 
+    ]" prop="region"> 
       <el-select v-model="form.region" placeholder="请选择活动区域" :style='{width:formLabelWidth}'>
       
         <el-option :label="item.room_text" :value="item.room_id" v-for="(item,index) in bjlist" :key="index"></el-option>

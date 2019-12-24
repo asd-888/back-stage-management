@@ -30,8 +30,9 @@
           :label-width="formLabelWidth"
           :rules="[
       { required: true, message: '请输入教室号'},
-      { type: 'number', message: '教室号必须为数字值'}
-    ]"
+   
+    ]"   prop= "name"
+    
         >
           <el-input v-model="form.name" autocomplete="off" placeholder="教室名"></el-input>
         </el-form-item>

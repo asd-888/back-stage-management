@@ -116,11 +116,11 @@ export default {
     
 
     },
-    handleDelete(index, row) {
+   async handleDelete(index, row) {
       console.log(index, row);
-        this.studentDelete(row.student_id).then(res=>{
+      await this.studentDelete(row.student_id)
            this.getxs()
-        })
+        
        
     },
      handleSizeChange(val) {
