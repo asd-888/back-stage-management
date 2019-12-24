@@ -88,9 +88,9 @@ export function grades() {
 //删除学生
 export function studentDelete(id) {
     return request({
-        url: "/manger/student/:id=>student_id",
+        url: `/manger/student/${id}`,
         method: "delete",
-        params: { id }
+       
     })
 }
 
