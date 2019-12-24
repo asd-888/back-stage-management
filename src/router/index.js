@@ -199,6 +199,7 @@ export const asyncRoutes = [
   tableRouter,
   testQuestionRouter, //试题管理
   test,
+  
     // 考试管理
     {
       path: '/examination',
