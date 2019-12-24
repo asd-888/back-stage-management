@@ -9,6 +9,7 @@
                             <label for="title">试卷名称</label>
                         </div>
                         <div class="item-control">
+                            {{input}}
                             <el-input v-model="input" placeholder="请输入内容"></el-input>
                         </div>
                     </div>    
@@ -16,6 +17,7 @@
                         <div class="item-label">
                             <label for="title">选择考试类型</label>
                         </div>
+                        {{value}}
                         <div class="item-control">
                             <el-select v-model="value" placeholder="请选择">
                                 <el-option
@@ -31,13 +33,14 @@
                         <div class="item-label">
                             <label for="title">选择课程</label>
                         </div>
+                        {{value1}}
                         <div class="item-control">
                              <el-select v-model="value1" placeholder="请选择">
                                 <el-option
                                 v-for="item in coursesList"
                                 :key="item.value"
                                 :label="item.subject_text"
-                                :value="item.subject_text">
+                                :value="item.subject_id">
                                 </el-option>
                             </el-select>
                         </div>
@@ -46,10 +49,11 @@
                         <div class="item-label">
                             <label for="title">设置题量</label>
                         </div>
+                        {{num}}
                         <div class="item-control">
                             <el-input-number 
                             v-model="num" controls-position="right" 
-                            @change="handleChange" :min="1" :max="10"
+                            @change="handleChange" :min="3" :max="10"
                             >
                             </el-input-number>
                         </div>
@@ -58,6 +62,7 @@
                         <div class="item-label">
                             <label for="title">考试时间</label>
                         </div>
+                        {{value2}}
                         <div class="item-control">
                             <el-date-picker
                                 v-model="value2"
@@ -65,12 +70,12 @@
                                 align="right"
                                 start-placeholder="开始日期"
                                 end-placeholder="结束日期"
-                                :default-time="['12:00:00', '08:00:00']">
+                                >
                             </el-date-picker>
                         </div>
                     </div> 
                     <div class="ant-row">
-                        <button>
+                        <button @click="sumbit">
                             <span>创建试卷</span>
                         </button>
                     </div> 
@@ -85,11 +90,11 @@ import { mapState, mapMutations, mapActions } from 'vuex'
 export default {
     data() {
         return {
-            input: '',
-            value:'',
-            num: 1,
-            value1: '',
-            value2: ''
+            input: '',//试卷名称
+            value:'',//考试类型
+            num: 1,//题量
+            value1: '',//课程
+            value2: '',//日期
         }
     },
     computed:{
@@ -101,6 +106,10 @@ export default {
     methods:{
         handleChange(value) {
             console.log(value);
+        },
+        sumbit(){
+            this.$router.push("/examination/addexam")
+            // localStorage.setItem('exam',)
         },
         ...mapActions({
             courses:'examination/courses',

@@ -200,7 +200,17 @@ export const asyncRoutes = [
         meta: {
           title: '考试列表'
           // if do not set roles, means: this page does not require permission
-        }
+         }
+      },
+      {
+        path: '/examination/examdetail',
+        component: () => import('@/views/examination/ExamDetail'),
+        name: 'examdetail',
+      },
+      {
+        path: '/examination/addexam',
+        component: () => import('@/views/examination/AddExam'),
+        name: 'addexam',
       }
     ]
   },
@@ -251,7 +261,7 @@ export const asyncRoutes = [
         component: () => import('@/views/example/list'),
         name: 'ArticleList',
         meta: { title: 'articleList', icon: 'list' }
-      }
+      },
     ]
   },
   // 阅卷管理
