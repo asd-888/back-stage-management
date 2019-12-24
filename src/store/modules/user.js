@@ -25,7 +25,7 @@ const mutations = {
   },
   SET_ROLES: (state, roles) => {
     state.roles = roles
-  }
+  } 
 }
 
 const actions = {
@@ -33,8 +33,21 @@ const actions = {
   async login({ commit }, userInfo) {
     const { username, password } = userInfo
     const res = await login({ user_name: username, user_pwd: password })
-    console.log(res, '...res.')
+    commit('SET_TOKEN', res.token)
     setToken(res.token)
+    // return new Promise((resolve, reject) => {
+    //   login({ user_name: username, user_pwd: password }).then(response => {
+    //       console.log(response)
+    //     // const { data } = response
+
+    //     console.log(data.token)
+    //     commit('SET_TOKEN', data.token)
+
+    //     resolve()
+    //   }).catch(error => {
+    //     reject(error)
+    //   })
+    // })
   },
 
   // get user info
@@ -55,12 +68,11 @@ const actions = {
       //   }
       const roles = ['admin']
       commit('SET_ROLES', roles)
-      // commit('SET_NAME', name)
-      // commit('SET_AVATAR', avatar)
-      // commit('SET_INTRODUCTION', introduction)
-      resolve({ roles })
-
-      // resolve(roles)
+      //   commit('SET_ROLES', roles)
+      //   commit('SET_NAME', name)
+      //   commit('SET_AVATAR', avatar)
+      //   commit('SET_INTRODUCTION', introduction)
+      resolve(roles)
       // }).catch(error => {
       //   reject(error)
       // })
@@ -79,6 +91,7 @@ const actions = {
         // reset visited views and cached views
         // to fixed https://github.com/PanJiaChen/vue-element-admin/issues/2485
         dispatch('tagsView/delAllViews', null, { root: true })
+
         resolve()
       }).catch(error => {
         reject(error)

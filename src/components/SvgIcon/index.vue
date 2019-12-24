@@ -1,3 +1,10 @@
+<!--
+ * @Author: 席鹏昊
+ * @Date: 2019-12-23 19:13:10
+ * @LastEditors: 席鹏昊
+ * @LastEditTime: 2019-12-23 19:32:40
+ * @Description: 
+ -->
 <template>
   <div v-if="isExternal" :style="styleExternalIcon" class="svg-external-icon svg-icon" v-on="$listeners" />
   <svg v-else :class="svgClass" aria-hidden="true" v-on="$listeners">

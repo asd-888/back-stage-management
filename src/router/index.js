@@ -1,3 +1,4 @@
+
 import Vue from 'vue'
 import Router from 'vue-router'
 
@@ -11,7 +12,14 @@ import componentsRouter from './modules/components'
 import chartsRouter from './modules/charts'
 import tableRouter from './modules/table'
 import nestedRouter from './modules/nested'
+// 试题管理
+import testQuestionRouter from './modules/testquestion'
 
+//试题管理
+import test from "./modules/test"
+
+//用户管理
+import user from "./modules/usermanagement"
 /**
  * Note: sub-menu only appear when route children.length >= 1
  * Detail see: https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
@@ -55,7 +63,6 @@ export const constantRoutes = [
     component: () => import('@/views/login/index'),
     hidden: true
   },
-
   {
     path: '/auth-redirect',
     component: () => import('@/views/login/auth-redirect'),
@@ -71,6 +78,7 @@ export const constantRoutes = [
     component: () => import('@/views/error-page/401'),
     hidden: true
   },
+ 
   {
     path: '/',
     component: Layout,
@@ -96,6 +104,21 @@ export const constantRoutes = [
       }
     ]
   },
+  
+  {
+    path: '/exam',
+    component: Layout,
+    children: [{
+      path: 'index',
+      component: () => import('@/views/exam/index'),
+      name: 'Documentation',
+      meta: { title: 'exam', icon: 'dashboard' }
+    }]
+  },
+
+    
+   
+
 
   {
     path: '/guide',
@@ -123,7 +146,8 @@ export const constantRoutes = [
         meta: { title: 'profile', icon: 'user', noCache: true }
       }
     ]
-  }
+  },
+  
 ]
 
 /**
@@ -172,48 +196,7 @@ export const asyncRoutes = [
       }
     ]
   },
-  // 考试管理
-  {
-    path: '/examination',
-    component: Layout,
-    redirect: '/examination/addexamination',
-    alwaysShow: true, // will always show the root menu
-    name: 'Examination',
-    meta: {
-      title: '考试管理',
-      icon: 'example',
-    },
-    children: [
-      {
-        path: 'addexamination',
-        component: () => import('@/views/examination/AddExamination'),
-        name: 'AddExamination',
-        meta: {
-          title: '添加考试',
-          roles: ['admin'] // or you can only set roles in sub nav
-        }
-      },
-      {
-        path: 'examinationlist',
-        component: () => import('@/views/examination/ExaminationList'),
-        name: 'ExaminationList',
-        meta: {
-          title: '考试列表'
-          // if do not set roles, means: this page does not require permission
-         }
-      },
-      {
-        path: '/examination/examdetail',
-        component: () => import('@/views/examination/ExamDetail'),
-        name: 'examdetail',
-      },
-      {
-        path: '/examination/addexam',
-        component: () => import('@/views/examination/AddExam'),
-        name: 'addexam',
-      }
-    ]
-  },
+
   {
     path: '/icon',
     component: Layout,
@@ -232,7 +215,76 @@ export const asyncRoutes = [
   chartsRouter,
   nestedRouter,
   tableRouter,
-
+  testQuestionRouter, //试题管理
+  test,
+  user,
+    // 考试管理
+    {
+      path: '/examination',
+      component: Layout,
+      redirect: '/examination/addexamination',
+      alwaysShow: true, // will always show the root menu
+      name: 'Examination',
+      meta: {
+        title: '考试管理',
+        icon: 'example',
+      },
+      children: [
+        {
+          path: 'addexamination',
+          component: () => import('@/views/examination/AddExamination'),
+          name: 'AddExamination',
+          meta: {
+            title: '添加考试',
+            roles: ['admin'] // or you can only set roles in sub nav
+          }
+        },
+        {
+          path: 'examinationlist',
+          component: () => import('@/views/examination/ExaminationList'),
+          name: 'ExaminationList',
+          meta: {
+            title: '考试列表'
+            // if do not set roles, means: this page does not require permission
+          }
+        },{
+          path: '/examination/examdetail',
+          component: () => import('@/views/examination/ExamDetail'),
+          name: 'examdetail',
+        },
+        {
+          path: '/examination/addexam',
+          component: () => import('@/views/examination/AddExam'),
+          name: 'addexam',
+        }
+      ]
+    },
+   
+    // 阅卷管理
+    {
+      
+      path: '/marking',
+      component: Layout,
+      redirect: '/marking/classlist',
+      alwaysShow: true,
+      meta: {
+        title: '阅卷管理',
+        icon: 'documentation'
+  
+      },
+      children: [
+        {
+          path: 'classlist',
+          component: () => import('@/views/AwaitClass/ClassList'),
+          meta: { title: '待批班级', icon: 'edit' }
+        },
+        {
+          path: '/marking/classmate',
+          name:'classmate',
+          component: () => import('@/views/AwaitClass/Classmate')
+        }
+      ]
+    },
   {
     path: '/example',
     component: Layout,
@@ -261,31 +313,6 @@ export const asyncRoutes = [
         component: () => import('@/views/example/list'),
         name: 'ArticleList',
         meta: { title: 'articleList', icon: 'list' }
-      },
-    ]
-  },
-  // 阅卷管理
-  {
-    
-    path: '/marking',
-    component: Layout,
-    redirect: '/marking/classlist',
-    alwaysShow: true,
-    meta: {
-      title: '阅卷管理',
-      icon: 'documentation'
-
-    },
-    children: [
-      {
-        path: 'classlist',
-        component: () => import('@/views/AwaitClass/ClassList'),
-        meta: { title: '待批班级', icon: 'edit' }
-      },
-      {
-        path: '/marking/classmate',
-        name:'classmate',
-        component: () => import('@/views/AwaitClass/Classmate')
       }
     ]
   },
@@ -327,6 +354,9 @@ export const asyncRoutes = [
       }
     ]
   },
+
+
+
 
   {
     path: '/error-log',
@@ -394,6 +424,46 @@ export const asyncRoutes = [
       }
     ]
   },
+ //班级管理路由
+  
+ {
+  path: '/bjgl',
+  component: Layout,
+  redirect: '/bjgl/bjgl',
+
+  meta: {
+    title: '班级管理',
+    icon: 'example'
+  },
+  children: [
+    {
+      path: 'bjgl',
+      component: () => import('@/views/Bjgl/bjgl'),
+     
+      meta: { title: '班级管理'}
+    },
+    {
+      path: 'jsgl',
+      component: () => import('@/views/Bjgl/jsgl'),
+     
+      meta: { title: '教室管理'}
+    },
+    {
+      path: 'xsgl',
+      component: () => import('@/views/Bjgl/xsgl'),
+     
+      meta: { title: '学生管理'}
+    },
+  ]
+},
+  
+
+
+
+
+
+
+
 
   {
     path: '/pdf',
@@ -464,6 +534,7 @@ export const asyncRoutes = [
     ]
   },
 
+
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
@@ -483,3 +554,8 @@ export function resetRouter() {
 }
 
 export default router
+
+
+
+
+

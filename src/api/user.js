@@ -1,9 +1,19 @@
+/*
+ * @Author: your name
+ * @Date: 2019-12-18 19:03:55
+ * @LastEditTime : 2019-12-23 19:29:29
+ * @LastEditors  : 席鹏昊
+ * @Description: In User Settings Edit
+ * @FilePath: \calle:\实训\新建文件夹\back-stage-management\src\api\user.js
+ */
 import request from '@/utils/request'
 
 export function login(data) {
+  console.log(data,"data")
   return request({
     url: '/user/login',
     method: 'post',
+    
     data
   })
 }
