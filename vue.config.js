@@ -27,7 +27,7 @@ module.exports = {
   publicPath: '/',
   outputDir: 'dist',
   assetsDir: 'static',
-  lintOnSave: process.env.NODE_ENV === 'development',
+  lintOnSave:true,  //guan eslint
   productionSourceMap: false,
   devServer: {
     port: port,
@@ -40,7 +40,8 @@ module.exports = {
       // change xxx-api/login => mock/login
       // detail: https://cli.vuejs.org/config/#devserver-proxy
       [process.env.VUE_APP_BASE_API]: {
-        target: "http://169.254.19.13:7002",
+       // target: "http://169.254.124.14:7002",    // 改一下
+        target: "http://169.254.160.213:7002",    
         changeOrigin: true,
         pathRewrite: {
           ['^' + process.env.VUE_APP_BASE_API]: ''

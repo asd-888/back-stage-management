@@ -18,14 +18,13 @@ export default {
 </script>
 
 <style>
-html,body,#app{
-  width: 100%;
-  height: 100%;
-}
-
-.app-main{
-  width: 100%;
-  height: 100%;
-  background: #f0f2f5;
-}
+     *{
+        margin: 0;
+        padding: 0;
+      }
+      .app-main{
+         height: 100%;
+         background:#f0f2f5;
+      }
+    
 </style>

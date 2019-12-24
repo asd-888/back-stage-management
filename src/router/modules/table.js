@@ -43,8 +43,7 @@ const tableRouter = {
       component: () => import('@/views/table/complex-table'),
       name: 'ComplexTable',
       meta: { title: 'complexTable' }
-    },
- 
+    }
   ]
 }
 export default tableRouter

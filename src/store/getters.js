@@ -26,6 +26,5 @@ const getters = {
   examList: state => state.examineTest.examList,//这是所有考试类型
   getQuestionsList: state => state.examineTest.getQuestionsList,//获取所有的试题
   fortUser: state => state.addQuestions.user, //获取当前用户的信息
-  AddTestData:state => state.AddTest.AddTestData,
 }
 export default getters

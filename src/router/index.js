@@ -17,6 +17,9 @@ import testQuestionRouter from './modules/testquestion'
 
 //试题管理
 import test from "./modules/test"
+
+//用户管理
+import user from "./modules/usermanagement"
 /**
  * Note: sub-menu only appear when route children.length >= 1
  * Detail see: https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
@@ -102,6 +105,21 @@ export const constantRoutes = [
     ]
   },
   
+  {
+    path: '/exam',
+    component: Layout,
+    children: [{
+      path: 'index',
+      component: () => import('@/views/exam/index'),
+      name: 'Documentation',
+      meta: { title: 'exam', icon: 'dashboard' }
+    }]
+  },
+
+    
+   
+
+
   {
     path: '/guide',
     component: Layout,
@@ -199,6 +217,7 @@ export const asyncRoutes = [
   tableRouter,
   testQuestionRouter, //试题管理
   test,
+  user,
     // 考试管理
     {
       path: '/examination',
@@ -396,6 +415,46 @@ export const asyncRoutes = [
       }
     ]
   },
+ //班级管理路由
+  
+ {
+  path: '/bjgl',
+  component: Layout,
+  redirect: '/bjgl/bjgl',
+
+  meta: {
+    title: '班级管理',
+    icon: 'example'
+  },
+  children: [
+    {
+      path: 'bjgl',
+      component: () => import('@/views/Bjgl/bjgl'),
+     
+      meta: { title: '班级管理'}
+    },
+    {
+      path: 'jsgl',
+      component: () => import('@/views/Bjgl/jsgl'),
+     
+      meta: { title: '教室管理'}
+    },
+    {
+      path: 'xsgl',
+      component: () => import('@/views/Bjgl/xsgl'),
+     
+      meta: { title: '学生管理'}
+    },
+  ]
+},
+  
+
+
+
+
+
+
+
 
   {
     path: '/pdf',
