@@ -17,6 +17,9 @@ import testQuestionRouter from './modules/testquestion'
 
 //试题管理
 import test from "./modules/test"
+
+//用户管理
+import user from "./modules/usermanagement"
 /**
  * Note: sub-menu only appear when route children.length >= 1
  * Detail see: https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
@@ -214,6 +217,7 @@ export const asyncRoutes = [
   tableRouter,
   testQuestionRouter, //试题管理
   test,
+  user,
     // 考试管理
     {
       path: '/examination',
