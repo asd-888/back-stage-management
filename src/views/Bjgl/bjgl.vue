@@ -2,7 +2,7 @@
   <div class="wrap">
     <h2>班级管理</h2>
     <div class="addClass">
-      <el-button type="primary" class="btn"  @click="addfn">添加班级</el-button>
+      <el-button type="primary" class="btn"  @click="addfn('ruleForm')">添加班级</el-button>
     </div>
     <el-table :data="bjlist" style="width: 90%" class="biaoge">
 
@@ -44,28 +44,25 @@
         <!-- <el-button type="text" @click="dialogFormVisible = true">打开嵌套表单的 Dialog</el-button> -->
 
 <el-dialog title="添加班级" :visible.sync="dialogFormVisible">
-  <el-form :model="form" label-position="top">
-    <el-form-item label="班级名"   :rules="[
-      { required: true, message: '请输入教室号'}
-     
-    ]"> 
-      <el-input v-model="form.name" autocomplete="off"  :disabled="flag" :style='{width:formLabelWidth}'></el-input>
+  <el-form :model="form" label-position="top" :rules="rules" ref="ruleForm">
+   
+   
+    <el-form-item label="班级名"  prop="name"  > 
+      <el-input v-model="form.name" autocomplete="off"  :disabled="flag" :style='{width:formLabelWidth}' placeholder="请输入班级名"></el-input>
     </el-form-item>
-    <el-form-item label="教室号"   :rules="[
-      { required: true, message: '请输入教室号'}
-     
-    ]" prop="region"> 
+
+
+
+
+    <el-form-item label="教室号"   prop="region"> 
       <el-select v-model="form.region" placeholder="请选择活动区域" :style='{width:formLabelWidth}'>
-      
-        <el-option :label="item.room_text" :value="item.room_id" v-for="(item,index) in bjlist" :key="index"></el-option>
-         
-       
+        <el-option :label="item.room_text" :value="item.room_id" v-for="(item,index) in bjlist" :key="index"></el-option> 
       </el-select>
     </el-form-item>
-     <el-form-item label="课程名"   :rules="[
-      { required: true, message: '请输入教室号'}
-   
-    ]">
+
+
+    
+     <el-form-item label="课程名"  prop="region1" >
       <el-select  v-model="form.region1" placeholder="请选择活动区域" :style='{width:formLabelWidth}'>
       <el-option :label="item.subject_text"  :value="item.subject_id"  v-for="(item,index) in bjlist" :key="index"></el-option>
        
@@ -73,8 +70,8 @@
     </el-form-item>
   </el-form>
   <div slot="footer" class="dialog-footer">
-    <el-button @click="dialogFormVisible = false">取 消</el-button>
-    <el-button type="primary" @click="handleOk">确 定</el-button>
+    <el-button @click="tankuangquxiao('ruleForm')">取 消</el-button>
+    <el-button type="primary" @click="handleOk('ruleForm')">确 定</el-button>
   </div>
 </el-dialog>
 
@@ -102,6 +99,19 @@ import { mapState, mapActions } from "vuex"
           desc: '',
           grade_id: ''
         },
+         rules: {
+          name: [
+            { required: true, message: '请输入班级名', trigger: 'blur' }
+            
+          ],
+          region: [
+            { required: true, message: '请选择教室号', trigger: 'change' }
+          ],
+          region1: [
+           { required: true, message: '请选择课程名', trigger: 'change' }
+          ],
+        
+        },
         formLabelWidth: "90%",
         flag: true
       }
@@ -113,11 +123,13 @@ import { mapState, mapActions } from "vuex"
     },
     methods: {
       // 确定 
-      handleOk() {  
-        this.dialogFormVisible = false
-        console.log(this.form.name,22222222222222222)
-        if(this.flag){   //如果input框禁用，让他走修改那个接口
-              this.gradeUpdate({
+      handleOk(formName) {  
+        
+         if(this.flag){
+            this.$refs[formName].validate((valid) => {
+          if (valid) {
+                  this.dialogFormVisible = false
+                this.gradeUpdate({
                      grade_name: this.form.name, 
                      grade_id: this.form.grade_id,
                      room_id: this.form.region,
@@ -126,12 +138,18 @@ import { mapState, mapActions } from "vuex"
                   this.getbj()
                     
                 )
-        // this.gradeUpdate('123')
-        //应该重新调用一下渲染的jiekou
-        }
+          } else {
+           
+            return false;
+          }
+        });
+         }
+       
         else{  //如果input没有禁用，走添加接口
-        console.log(this.form.region1)
-           this.gradeAdd({
+           this.$refs[formName].validate((valid) => {
+          if (valid) {
+              this.dialogFormVisible = false
+            this.gradeAdd({
                      grade_name: this.form.name, 
                      room_id:this.form.region,
                      subject_id:this.form.region1,
@@ -139,6 +157,12 @@ import { mapState, mapActions } from "vuex"
                   this.getbj()
                            
                 )  
+          } else {
+        
+            return false;
+          }
+        });
+          
         }
       },
       handleEdit(index, row) {
@@ -159,13 +183,15 @@ import { mapState, mapActions } from "vuex"
           this.getbj()
 
       },
-      addfn(){
+      addfn(formName){
          this.form.name="", 
                  this.form.grade_id="",
                     this.form.region="",
                     this.form.region1=""
              this.dialogFormVisible = true,
             this.flag=false;
+              this.$refs[formName].resetFields();
+
             
       },
        ...mapActions({
@@ -173,7 +199,11 @@ import { mapState, mapActions } from "vuex"
        gradeUpdate: 'bjgl/gradeUpdate',
        gradeDelete:"bjgl/gradeDelete",
        gradeAdd:"bjgl/gradeAdd"
-    })
+    }),
+    tankuangquxiao(formName){
+            this.dialogFormVisible = false
+          this.$refs[formName].resetFields();
+    }
 
 
     },

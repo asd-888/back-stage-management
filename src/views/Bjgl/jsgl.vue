@@ -2,7 +2,7 @@
   <div>
     <h2>教室管理</h2>
     <div class="addClass">
-      <el-button type="primary" class="btn" @click="dialogFormVisible = true">+添加教室</el-button>
+      <el-button type="primary" class="btn" ref="form" @click="tianjiajiaoshi('form')" >+添加教室</el-button>
     </div>
 
     <div class="biaoge">
@@ -21,10 +21,10 @@
         </el-table-column>
       </el-table>
     </div>
-    <!-- 下面是弹框 -->
+    <!-- 下面是添加班级弹框 -->
 
     <el-dialog title="添加班级" :visible.sync="dialogFormVisible">
-      <el-form :model="form" label-position="top">
+      <el-form :model="form" label-position="top" ref="form">
         <el-form-item
           label="教室管理"
           :label-width="formLabelWidth"
@@ -38,8 +38,8 @@
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="queding">确 定</el-button>
+        <el-button @click="tianjiaquxiao('form')">取 消</el-button>
+        <el-button type="primary" @click="queding('form')">确 定</el-button>
       </div>
     </el-dialog>
 
@@ -49,7 +49,7 @@
       <span>你确定要删除此教室吗</span>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible1 = false">取 消</el-button>
-        <el-button type="primary" @click="shanchu">确 定</el-button>
+        <el-button type="primary" @click="shanchu()">确 定</el-button>
       </span>
     </el-dialog>
   </div>
@@ -96,19 +96,48 @@ export default {
       roomAdd: "jsgl/roomAdd",
       roomDelete:"jsgl/roomDelete"
     }),
-    queding() {
-      this.dialogFormVisible = false;
-      this.roomAdd({ room_text: this.form.name }).then(res => {
-        this.getjs();
-      });
+    queding(formName) {
+          this.$refs[formName].validate((valid) => {
+          if (valid) {
+                this.dialogFormVisible = false;
+                  this.roomAdd({ room_text: this.form.name }).then(res => {
+                  
+                  this.getjs();
+                  this.form.name = ""
+               });
+          } else {
+          
+            return false;
+            // this.$refs[formName].resetFields();
+          }
+        })
+          
+      
+         
+
+     
+       
     },
+   tianjiaquxiao(formName){
+       this.dialogFormVisible = false
+          this.$refs[formName].resetFields();
+   },
+
+
     shanchu(){
+       
       this.dialogVisible1 = false
        let params={}
         params.room_id=this.shanchuid
-         this.roomDelete(params)
-        this.getjs()
-
+         this.roomDelete(params).then(res=>{
+           this.getjs()
+         })
+        
+    },
+    tianjiajiaoshi(formName){
+        this.dialogFormVisible = true
+           this.$refs[formName].resetFields();
+      
     }
   },
   computed: {
