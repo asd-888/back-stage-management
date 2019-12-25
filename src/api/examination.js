@@ -21,10 +21,11 @@ export function  examList(){
     })
 }
 // 教师端详情
-export function  examDetail(){
+export function  examDetail(data){
     return request ({
-        url:'/exam/exam/gh1ye3-0i6opd',
-        method:'get'
+        url:'/exam/exam/w5tcy-g2dts',
+        method:'get',
+        data
     })
 }
 export function addExam(data){
@@ -32,5 +33,21 @@ export function addExam(data){
         url:'/exam/exam',
         method:'post',
         data
+    })
+}
+// 更新列表
+export function updateExamList(data){
+    return request ({
+        url:'/exam/exam/8nyeq-a1x5cc',
+        method:'put',
+        data
+    })
+}
+// 删除
+export function deleteOne(data){
+    return request ({
+        url:'/exam/exam/w5tcy-g2dts',
+        method:'delete',
+        params:{data}
     })
 }

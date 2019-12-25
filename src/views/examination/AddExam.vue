@@ -8,12 +8,12 @@
                     <p>考试时间：1小时30分钟 监考人：刘于 开始考试时间：2018.9.10 10:00 阅卷人：刘于</p>
                     <div class="box" v-if="addExamList">
                         <div v-for="(item,index) in addExamList.questions" :key="index" class="item">
-                            <p><span>{{index+1}}:{{item.title}}</span><a>删除</a></p>
+                            <p><span>{{index+1}}:{{item.title}}</span><b @click="del(index)">删除</b></p>
                             <div>{{item.questions_stem}}</div>
                         </div>
                     </div>
                     <div class="submit">
-                         <button>创建试卷</button>
+                         <button @click="found">创建试卷</button>
                     </div>
                 </div>
             </el-main>
@@ -26,13 +26,29 @@ import { mapState, mapMutations, mapActions } from 'vuex'
 export default {
     computed:{
         ...mapState({
-            addExamList:state=>state.examination.addExamList
+            addExamList:state=>state.examination.addExamList,
         })
     },
     methods:{
         ...mapMutations({
-            addExam:'examination/addExam'
-        })
+            addExam:'examination/addExam',
+            setList:'examination/setList',
+           
+        }),
+        ...mapActions({
+            updateExamList:'examination/updateExamList',
+            examList:'examination/examList',
+            deleteOne:'examination/deleteOne',
+        }),
+        del(index){
+            this.setList(index)
+            this.addExam()
+        },
+        found(){
+            this.updateExamList();
+            this.$router.push('/examination/examinationlist');
+            this.examList()
+        }
     },
     created(){
         this.addExam();
@@ -80,7 +96,7 @@ export default {
     display: flex;
     justify-content: space-between;
 }
-.content>.box>div p a{
+.content>.box>div p b{
     cursor: pointer;
     color: #0139fd;
 }
