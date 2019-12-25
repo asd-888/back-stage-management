@@ -1,10 +1,11 @@
-import {Allcourses,examType,examList,examDetail} from '@/api/examination'
+import {Allcourses,examType,examList,examDetail,addExam} from '@/api/examination'
 
 const state = {
     coursesList:[],
     examTypeList:[],
     ExamList:[],
-    examDetailList:[]
+    examDetailList:[],
+    addExamList:[]
 }
 const mutations = {
     setcoursesList(state,payload){
@@ -12,6 +13,16 @@ const mutations = {
     },
     setexamTypeList(state,payload){
         state.examTypeList = payload
+    },
+    // 转化时间
+    toTime(state,payload){
+        var dataee=new Date(payload).toJSON();
+        var date = new Date(+new Date(dataee)+8*3600*1000).toISOString().replace(/T/g,' ').replace(/\.[\d]{3}Z/,'');
+        return date
+    },
+    // 创建考试
+    addExam(state,payload){
+        let a = JSON.parse(localStorage.getItem('exam'))
     },
     // 考试列表
     setexamList(state,payload){
@@ -38,6 +49,10 @@ const mutations = {
     // 教师端详情
     setExamDetailList(state,payload){
         state.examDetailList = payload
+    },
+    //添加页面
+    setaddExamList(state,paylaod){
+        state.addExamList = paylaod
     }
 }
 
@@ -59,7 +74,13 @@ const actions = {
     async examDetail({commit},payload){
         let res = await examDetail();
         commit('setExamDetailList',res.data)
-        console.log(res.data)
+    },
+    // 创建考试
+    async addExam({commit},payload){
+        let res = await addExam(payload);
+        commit('setaddExamList',res.data)
+        // console.log(res.data,"res.data")
+        console.log(JSON.stringify(res.data.exam_exam_id))
     }
 }
 
