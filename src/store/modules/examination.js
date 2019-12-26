@@ -1,5 +1,7 @@
 import {Allcourses,examType,examList,examDetail,addExam,updateExamList,deleteOne} from '@/api/examination'
 
+
+
 const state = {
     coursesList:[],
     examTypeList:[],
@@ -79,6 +81,7 @@ const actions = {
     // 教师端详情
     async examDetail({commit},payload){
         let res = await examDetail(payload);
+        console.log("res.....",res)
         commit('setExamDetailList',res.data)
     },
     // 创建考试

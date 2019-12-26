@@ -31,7 +31,7 @@ export default {
         })
     },
     created(){
-        // this.examDetail(this.$route.query.id)
+        this.examDetail(this.$route.query.id)
     }      
 }
 </script>

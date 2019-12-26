@@ -44,14 +44,14 @@
 
         <div class="block">
           <el-pagination
-            :current-page="currentPage4"
-            :page-sizes="[5, 10, 20, 40]"
-            :page-size="100"
-            layout="total, sizes, prev, pager, next, jumper"
-            :total="paperListNum"
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
-          />
+            :current-page="currentPage4"
+            :page-sizes="[100, 200, 300, 400]"
+            :page-size="100"
+            layout="total, sizes, prev, pager, next, jumper"
+            :total="400">
+          </el-pagination>
         </div>
       </el-main>
     </el-container>
@@ -63,7 +63,7 @@ import { mapState, mapMutations, mapActions } from 'vuex'
 export default {
   data() {
     return {
-      currentPage4: 4
+      currentPage4: 1
     }
   },
   computed: {

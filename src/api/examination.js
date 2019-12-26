@@ -21,11 +21,10 @@ export function  examList(){
     })
 }
 // 教师端详情
-export function  examDetail(data){
+export function  examDetail(id){
     return request ({
-        url:'/exam/exam/w5tcy-g2dts',
-        method:'get',
-        data
+        url:`/exam/exam/${id}`,
+        method:'get'
     })
 }
 export function addExam(data){
