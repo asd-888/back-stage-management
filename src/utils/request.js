@@ -75,13 +75,7 @@ service.interceptors.response.use(
       }
       // return Promise.reject(new Error(res.message || 'Error'))
     } else {
-      if(res.msg !== "数据获取成功"){
-        Message({
-          message: res.msg || 'succeed',
-          type: 'succeed',
-          duration: 5 * 1000
-        })
-      }
+     
      
       return res
     }
