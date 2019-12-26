@@ -2,7 +2,7 @@
  * @Author: 席鹏昊
  * @Date: 2019-12-24 14:58:34
  * @LastEditors  : 席鹏昊
- * @LastEditTime : 2019-12-26 10:56:14
+ * @LastEditTime : 2019-12-26 20:19:20
  * @Description: 
  -->
 <template>
@@ -194,6 +194,7 @@
                 </div>
             </div>
         </div>
+        <el-button :plain="true"></el-button>
     </div>
 </template>
 <script>
@@ -264,41 +265,55 @@ export default {
         //确定事件
         confirm(i){
             if(i==1&&this.user){
-                 this.add({user_name:this.ruleForm.addInput, user_pwd:this.ruleForm.addPwd, identity_id:this.ruleForm.identity})
+                 this.add({user_name:this.ruleForm.addInput, user_pwd:this.ruleForm.addPwd, identity_id:this.ruleForm.identity}).then(res=>{
+                    this.$message(res);
+                })
                  this.ruleForm={
                      addInput: '',
                      addPwd: '',
                      identity: ''
                  }
             }else if(i==2){
-                this.addStatus({identity_text:this.identity.identityName})
-                this.identity_text.identityName=""
+                this.addStatus({identity_text:this.identity.identityName}).then(res=>{
+                    this.$message(res);
+                })
+                this.identity.identityName=""
             }else if(i==3){
-                this.addApi({api_authority_text:this.apiAuthority.apiAuthorityName,api_authority_url:this.apiAuthority.apiAuthorityUrl,api_authority_method:this.apiAuthority.apiAuthorityMethod})
+                this.addApi({api_authority_text:this.apiAuthority.apiAuthorityName,api_authority_url:this.apiAuthority.apiAuthorityUrl,api_authority_method:this.apiAuthority.apiAuthorityMethod}).then(res=>{
+                    this.$message(res);
+                })
                 this.apiAuthority={
                     apiAuthorityName: '',
                     apiAuthorityUrl: '',
                     apiAuthorityMethod: ''
                 }
             }else if(i==4){
-                this.addView({view_authority_text:this.value,view_id:this.viewExisting.viewExisting})
+                this.addView({view_authority_text:this.value,view_id:this.viewExisting.viewExisting}).then(res=>{
+                    this.$message(res);
+                })
                 this.viewExisting={
                     viewExisting: ''
                 }
             }else if(i==5){
-                this.setApi({identity_id:this.identityApi.identityApi,api_authority_id:this.identityApi.identityApiPort})
+                this.setApi({identity_id:this.identityApi.identityApi,api_authority_id:this.identityApi.identityApiPort}).then(res=>{
+                    this.$message(res);
+                })
                 this.identityApi={
                     identityApi:'',
                     identityApiPort:''
                 }
             }else if(i==6){
-                this.setView({identity_id:this.set.setIdentityId,view_authority_id:this.set.setViewAuthority})
+                this.setView({identity_id:this.set.setIdentityId,view_authority_id:this.set.setViewAuthority}).then(res=>{
+                    this.$message(res);
+                })
                 this.set={
                     setIdentityId: '',
                     setViewAuthority: ''
                 }
             }else{
-                this.userUpdate({user_name:this.ruleForm.addInput, user_pwd:this.ruleForm.addPwd, identity_id:this.ruleForm.identity, user_id:this.ruleForm.identityId})
+                this.userUpdate({user_name:this.ruleForm.addInput, user_pwd:this.ruleForm.addPwd, identity_id:this.ruleForm.identity, user_id:this.ruleForm.identityId}).then(res=>{
+                    this.$message(res);
+                })
                this.ruleForm={
                      addInput: '',
                      addPwd: '',
@@ -306,7 +321,6 @@ export default {
                      identityId:''
                  }
             }
-            
              this.getList()
         },
         //重置事件

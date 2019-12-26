@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2019-12-18 19:03:56
- * @LastEditTime : 2019-12-26 15:56:48
+ * @LastEditTime : 2019-12-26 20:12:18
  * @LastEditors  : 席鹏昊
  * @Description: In User Settings Edit
  * @FilePath: \calle:\实训\新建文件夹\back-stage-management\src\utils\request.js
@@ -75,14 +75,6 @@ service.interceptors.response.use(
       }
       // return Promise.reject(new Error(res.message || 'Error'))
     } else {
-      if(res.msg !== "数据获取成功"){
-        Message({
-          message: res.msg || 'succeed',
-          type: 'succeed',
-          duration: 5 * 1000
-        })
-      }
-     
       return res
     }
   },

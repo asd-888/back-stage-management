@@ -2,7 +2,7 @@
  * @Author: 席鹏昊
  * @Date: 2019-12-25 11:41:06
  * @LastEditors  : 席鹏昊
- * @LastEditTime : 2019-12-26 10:51:39
+ * @LastEditTime : 2019-12-26 20:15:19
  * @Description: 
  */
 
@@ -56,40 +56,59 @@ const actions= {
    //添加用户
    async add({commit},payload){
        let data={...payload}
-       let src=await addUser(data)
+       let src=await addUser(data);
+       if(src.code===1){
+        return src.msg
+    }
    },
    //更新用户
    async userUpdate({commit},payload){
     let params={...payload}
     let src= await updateUser(params);
+    if(src.code===1){
+        return src.msg
+    }
    },
    //添加身份
    async addStatus({commit},payload) {
         let params={...payload}
         let src=await addIdentity(params);
+        if(src.code===1){
+            return src.msg
+        }
+        
    },
    //添加api接口权限
    async addApi({commit},payload) {
     let params={...payload};
-    let src= await addAuthorityApi(params)
+    let src= await addAuthorityApi(params);
+    if(src.code===1){
+        return src.msg
+    }
    },
    //添加view权限
    async addView({commit},payload) {
        let params= {...payload}
-       let src=await addAuthorityView(params)
-       console.log(src,"src")
+       let src=await addAuthorityView(params);
+       if(src.code===1){
+        return src.msg
+    }
    },
    //设置身份权限
     async setApi({commit}, payload){
         let data={...payload}
         let src=await setIdentityApi(data);
+        if(src.code===1){
+            return src.msg
+        }
     },
     //设置身份设定视图权限
     async setView({commit}, payload) {
         let data={...payload}
-        console.log(data,"datadtatda")
-        let src=await setIdentityView();
-        console.log(src,"src")
+        let src=await setIdentityView(data);
+        if(src.code===1){
+            return src.msg
+        }
     }
 
 }
