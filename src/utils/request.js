@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2019-12-18 19:03:56
+ * @LastEditTime : 2019-12-26 15:56:48
+ * @LastEditors  : 席鹏昊
+ * @Description: In User Settings Edit
+ * @FilePath: \calle:\实训\新建文件夹\back-stage-management\src\utils\request.js
+ */
 import axios from 'axios'
 import { MessageBox, Message } from 'element-ui'
 import store from '@/store'
@@ -44,7 +52,6 @@ service.interceptors.response.use(
    */
   response => {
     const res = response.data
-
     // if the custom code is not 20000, it is judged as an error.
     if (res.code !== 1) {
       Message({
@@ -68,6 +75,14 @@ service.interceptors.response.use(
       }
       // return Promise.reject(new Error(res.message || 'Error'))
     } else {
+      if(res.msg !== "数据获取成功"){
+        Message({
+          message: res.msg || 'succeed',
+          type: 'succeed',
+          duration: 5 * 1000
+        })
+      }
+     
       return res
     }
   },

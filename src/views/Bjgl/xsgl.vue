@@ -172,4 +172,14 @@ h2 {
 .table1 {
   margin-top: 40px;
 }
+.block{
+  width: 50%;
+  height: 40px;
+  float:right;
+}
+.el-pagination{
+  height: 40px;
+  line-height:40px;
+}
+
 </style>

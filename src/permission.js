@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2019-12-18 19:03:56
- * @LastEditTime : 2019-12-23 19:28:02
+ * @LastEditTime : 2019-12-26 09:39:20
  * @LastEditors  : 席鹏昊
  * @Description: In User Settings Edit
  * @FilePath: \calle:\实训\新建文件夹\back-stage-management\src\permission.js
@@ -31,6 +31,7 @@ router.beforeEach(async(to, from, next) => {
 
   if (hasToken) {
     if (to.path === '/login') {
+      console.log(hasToken,"hasToken")
       // if is logged in, redirect to the home page
       next({ path: '/' })
       NProgress.done()
