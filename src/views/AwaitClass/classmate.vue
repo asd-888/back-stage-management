@@ -46,11 +46,11 @@
           <el-pagination
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
-            :current-page="currentPage4"
-            :page-sizes="[100, 200, 300, 400]"
-            :page-size="100"
+            :current-page="currentPage"
+            :page-sizes="[5,10,20,50]"
+            :page-size="pageSize"
             layout="total, sizes, prev, pager, next, jumper"
-            :total="400">
+            :total="paperListNum">
           </el-pagination>
         </div>
       </el-main>
@@ -63,7 +63,8 @@ import { mapState, mapMutations, mapActions } from 'vuex'
 export default {
   data() {
     return {
-      currentPage4: 1
+      currentPage: 1,
+      pageSize:5,
     }
   },
   computed: {
@@ -81,10 +82,12 @@ export default {
     },
 
     handleSizeChange(val) {
-      console.log(`每页 ${val} 条`)
+      this.pageSize = val
+      // console.log(`每页 ${val} 条`)
     },
     handleCurrentChange(val) {
-      console.log(`当前页: ${val}`)
+      this.currentPage = val
+      // console.log(`当前页: ${val}`)
     }
   },
   created() {
