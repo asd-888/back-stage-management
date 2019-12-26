@@ -8,10 +8,10 @@
                     <span>考试类型：</span>
                     <el-select v-model="value" placeholder="请选择">
                         <el-option
-                        v-for="item in options"
+                        v-for="item in examTypeList"
                         :key="item.value"
-                        :label="item.label"
-                        :value="item.value">
+                        :label="item.exam_name"
+                        :value="item.exam_id">
                         </el-option>
                     </el-select>    
                 </div>
@@ -19,10 +19,10 @@
                     <span>课程：</span>
                     <el-select v-model="value1" placeholder="请选择">
                         <el-option
-                        v-for="item in options"
+                        v-for="item in coursesList"
                         :key="item.value"
-                        :label="item.label"
-                        :value="item.value">
+                        :label="item.subject_text"
+                        :value="item.subject_id">
                         </el-option>
                     </el-select>    
                 </div>
@@ -94,68 +94,32 @@ import {mapState,mapMutations,mapActions} from 'vuex'
 export default {
     data(){
         return{
-            options: [{
-                value: '选项1',
-                label: '黄金糕'
-            },
-            {
-                value: '选项2',
-                label: '双皮奶'
-            }, 
-            {
-                value: '选项3',
-                label: '蚵仔煎'
-            },
-            {
-                value: '选项4',
-                label: '龙须面'
-            },
-            {
-                value: '选项5',
-                label: '北京烤鸭'
-            }],
+            
             value: '',
             value1:'',
-            tableData: [{
-                date: '2016-05-02',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1518 弄'
-            }, {
-                date: '2016-05-04',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1517 弄'
-            }, {
-                date: '2016-05-01',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1519 弄'
-            }, {
-                date: '2016-05-03',
-                name: '王小虎',
-                address: '上海市普陀区金沙江路 1516 弄'
-            }]
         }   
     },
     computed:{
         ...mapState({
-            ExamList:state=>state.examination.ExamList
+            ExamList:state=>state.examination.ExamList,
+            coursesList: state => state.examination.coursesList,
+            examTypeList: state => state.examination.examTypeList
         })
+       
     },
     methods:{
         // 异步
         ...mapActions({
             examList:'examination/examList',
+            examDetail:'examination/examDetail',
            
         }),
         ...mapMutations({
 
         }),
         handleEdit(index,row){
-            this.$router.push({
-                path:'/examination/examdetail',
-                query:{
-                    id:row.exam_exam_id
-                }
-            })
+            console.log(row)
+            this.$router.push(`/examination/examdetail?id=${row.exam_exam_id}`)
         }
     },
     created(){

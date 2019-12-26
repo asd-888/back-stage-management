@@ -1,3 +1,10 @@
+<!--
+ * @Author: 席鹏昊
+ * @Date: 2019-12-26 20:40:38
+ * @LastEditors: 席鹏昊
+ * @LastEditTime: 2019-12-26 20:44:32
+ * @Description: 
+ -->
 <template>
     <div class="detail">
     
