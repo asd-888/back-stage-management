@@ -281,7 +281,7 @@ export const asyncRoutes = [
         {
           path: '/marking/classmate',
           name:'classmate',
-          component: () => import('@/views/AwaitClass/Classmate')
+          component: () => import('@/views/AwaitClass/classmate')
         }
       ]
     },
