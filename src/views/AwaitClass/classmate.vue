@@ -83,16 +83,13 @@ export default {
 
     handleSizeChange(val) {
       this.pageSize = val
-      // console.log(`每页 ${val} 条`)
     },
     handleCurrentChange(val) {
       this.currentPage = val
-      // console.log(`当前页: ${val}`)
     }
   },
   created() {
-    // this.grade_name = localStorage.getItem('grade_name')
-    // ,grade_name:localStorage.getItem('grade_name')
+
     
   }
 }
