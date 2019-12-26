@@ -31,7 +31,11 @@ const mutations = {
       console.log(payload)
          let {ipt1,sel1,sel2}=payload
      let mohuhou= state.xslist.filter((item,index)=>{
-          return item.student_name==ipt1 ||item.room_text==sel1 || item.grade_name==sel2
+          //  if(ipt1&&sel1&&sel2){
+             return item.student_name==ipt1 || item.room_text==sel1 || item.grade_name==sel2
+          //  }
+           
+          // return item.student_name==ipt1 ||item.room_text==sel1 || item.grade_name==sel2
       })
       state.xslist=mohuhou
     }

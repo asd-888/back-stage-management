@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2019-12-18 19:03:56
- * @LastEditTime : 2019-12-23 19:38:37
+ * @LastEditTime : 2019-12-25 13:39:39
  * @LastEditors  : 席鹏昊
  * @Description: In User Settings Edit
  * @FilePath: \新建文件夹\back-stage-management\src\store\getters.js
@@ -26,5 +26,9 @@ const getters = {
   examList: state => state.examineTest.examList,//这是所有考试类型
   getQuestionsList: state => state.examineTest.getQuestionsList,//获取所有的试题
   fortUser: state => state.addQuestions.user, //获取当前用户的信息
+  userList: state=> state.userManagement.userList,//获取用户数据
+  identityList: state=> state.userManagement.identityList,//获取身份数据
+  viewList: state=> state.userManagement.viewList,//视图权限数据
+  apiList: state=> state.userManagement.apiList,//api权限数据
 }
 export default getters
