@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2019-12-18 19:03:56
- * @LastEditTime : 2019-12-23 19:28:02
+ * @LastEditTime : 2019-12-26 09:39:20
  * @LastEditors  : 席鹏昊
  * @Description: In User Settings Edit
  * @FilePath: \calle:\实训\新建文件夹\back-stage-management\src\permission.js
@@ -27,9 +27,11 @@ router.beforeEach(async(to, from, next) => {
 
   // determine whether the user has logged in
   const hasToken = getToken()
+  console.log(getToken())
 
   if (hasToken) {
     if (to.path === '/login') {
+      console.log(hasToken,"hasToken")
       // if is logged in, redirect to the home page
       next({ path: '/' })
       NProgress.done()
@@ -42,7 +44,8 @@ router.beforeEach(async(to, from, next) => {
         try {
           // get user info
           // note: roles must be a object array! such as: ['admin'] or ,['developer','editor']
-          const { roles } = await store.dispatch('user/getInfo')
+          const roles = await store.dispatch('user/getInfo')
+          // console.log(await store.dispatch('user/getInfo'))
 
           // generate accessible routes map based on roles
           const accessRoutes = await store.dispatch('permission/generateRoutes', roles)
@@ -54,12 +57,13 @@ router.beforeEach(async(to, from, next) => {
           // set the replace: true, so the navigation will not leave a history record
           next({ ...to, replace: true })
         } catch (error) {
+          console.log(1)
+          console.log(error)
           // remove token and go to login page to re-login
           // await store.dispatch('user/resetToken')
           // Message.error(error || 'Has Error')
           // next(`/login?redirect=${to.path}`)
           // NProgress.done()
-          console.log('error...',error)
         }
       }
     }

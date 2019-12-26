@@ -70,14 +70,8 @@ export default {
   methods: {
 
     handleEdit(index, row) {
-      // this.$router.push(`/examination/classmate?grade_id=${row.grade_id}`)
-      // this.$router.push({name: '/examination/classmate', params: {grade_id: row.grade_id}})
       this.$router.push({
         path: '/marking/classmate',
-        // query:{
-        //     grade_id: row.grade_id
-        // }
-        
       })
       this.studentPaperList({ grade_id: row.grade_id })
       localStorage.setItem('grade_name', row.grade_name)

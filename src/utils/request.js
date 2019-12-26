@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2019-12-18 19:03:56
- * @LastEditTime : 2019-12-23 19:41:05
+ * @LastEditTime : 2019-12-26 20:12:18
  * @LastEditors  : 席鹏昊
  * @Description: In User Settings Edit
  * @FilePath: \calle:\实训\新建文件夹\back-stage-management\src\utils\request.js
@@ -13,7 +13,7 @@ import { getToken } from '@/utils/auth'
 
 // create an axios instance
 const service = axios.create({
-  baseURL:'http://169.254.19.13:7002', // url = base url + request url
+  baseURL: 'http://169.254.19.13:7002', // url = base url + request url
   // withCredentials: true, // send cookies when cross-domain requests
   timeout: 5000 // request timeout
 })
@@ -23,20 +23,17 @@ service.interceptors.request.use(
   config => {
     // do something before request is sent
 
-    if (store.getters.token) {
-
+    if (getToken) {
       // let each request carry token
       // ['X-Token'] is a custom headers key
       // please modify it according to the actual situation
-
-      //获取token
-      
       config.headers['authorization'] = getToken()
     }
     return config
   },
   error => {
     // do something with request error
+    console.log(error) // for debug
     return Promise.reject(error)
   }
 )
@@ -55,11 +52,10 @@ service.interceptors.response.use(
    */
   response => {
     const res = response.data
-
     // if the custom code is not 20000, it is judged as an error.
-    if (res.code !== 1)   {
+    if (res.code !== 1) {
       Message({
-        message: res.msg || 'Error',
+        message: res.message || 'Error',
         type: 'error',
         duration: 5 * 1000
       })
@@ -77,7 +73,7 @@ service.interceptors.response.use(
           })
         })
       }
-      return Promise.reject(new Error(res.msg || 'Error'))
+      // return Promise.reject(new Error(res.message || 'Error'))
     } else {
       return res
     }

@@ -1,10 +1,3 @@
-/*
- * @Author: 席鹏昊
- * @Date: 2019-12-23 19:13:10
- * @LastEditors: 席鹏昊
- * @LastEditTime: 2019-12-23 19:35:47
- * @Description: 
- */
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
 import Cookies from 'js-cookie'

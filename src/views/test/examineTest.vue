@@ -1,8 +1,8 @@
 <!--
  * @Author: 席鹏昊
  * @Date: 2019-12-20 10:37:58
- * @LastEditors  : 席鹏昊
- * @LastEditTime : 2019-12-23 09:14:49
+ * @LastEditors  : Please set LastEditors
+ * @LastEditTime : 2019-12-25 15:11:32
  * @Description: 
  -->
 <template>
@@ -13,7 +13,11 @@
       <div class="title">
         <h5>课程类型</h5>
         <div>
-          <p v-for="(item,index) in subjectList" :key="index">{{item.subject_text}}</p>
+          <p v-for="(item,index) in subjectList" :key="index" style="list-style: none;
+                display: inline-block;line-height: 20px; height: 22px; padding: 0 7px;
+                border-radius: 2px;border: 1px solid #d9d9d9;background: #fafafa;
+                font-size: 12px; transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+                margin-right: 8px; opacity: 1; cursor: pointer;">{{item.subject_text}}</p>
         </div>
       </div>
       <div>
@@ -46,15 +50,15 @@
     </div>
     <!-- 这是试题列表 -->
     <div class="con">
-      <div class="list" v-for="(item,index) in getQuestionsList" :key="index" @mouseenter="mouseenter(index)">
+      <div class="list" v-for="(item,index) in getQuestionsList" :key="index" @mouseenter="mouseenter(index)" @click="jump(item.questions_id)" >
         <div class="list-l">
-          <div>{{item.title}}</div>
+          <div style="font-size:14px;color: rgba(0, 0, 0, 0.65);margin-top: 10px;">{{item.title}}</div>
           <div class="l-btn">
-            <p>{{item.questions_type_text}}</p>
-            <p>{{item.subject_text}}</p>
-            <p>{{item.exam_name}}</p>
+            <p style="color: #1890ff; background: #e6f7ff; border-color: #91d5ff;    font-size: 12px; ">{{item.questions_type_text}}</p>
+            <p style="color: #2f54eb; background: #f0f5ff;border-color: #adc6ff;    font-size: 12px;">{{item.subject_text}}</p>  
+            <p style="color: #fa8c16;background: #fff7e6;border-color: #ffd591;    font-size: 12px;">{{item.exam_name}}</p>
           </div>
-          <div>{{item.user_name}}发布</div>
+          <a style="color: #0139FD;">{{item.user_name}}发布</a>
         </div>
         <div class="list-r">编辑</div>
       </div>
@@ -96,11 +100,18 @@ export default {
       let list=Array.from(document.querySelectorAll('.list'))
       list.map(item => item.classList.remove('active'))
       list[i].classList.add('active')
-    }
+    },
+      //跳转
+  jump(questions_id){
+    console.log(questions_id)
+
+    this.$router.push({path:'/examinetest/condition',query:{questions_id:questions_id}})
+  }
   },
   created() {
     this.subject();
-  }
+  },
+
 };
 </script>
 <style scoped lang="scss">
@@ -157,6 +168,7 @@ export default {
   display: flex;
   align-items: center;
   padding-left: 20px;
+  
 }
 .btn {
   padding-left: 20px;
@@ -181,6 +193,9 @@ export default {
 }
 .l-btn {
   display: flex;
+  margin-bottom: 10px;
+  
+
   p:first-child {
     margin-left: 0;
   }
@@ -192,6 +207,7 @@ export default {
     text-align: center;
     line-height: 30px;
     padding: 0 5px;
+    margin-top: 10px;
   }
 }
 .list-r {
@@ -200,6 +216,9 @@ export default {
   align-items: center;
 }
 .active{
-  background:rgba(0,0,0,.2);
+  background:rgba(128, 177, 233, 0.15)
+  // background: ;
+  //  filter:alpha(opacity:20);
+  //   opacity:0.2; 
 }
 </style>

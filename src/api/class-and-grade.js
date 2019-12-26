@@ -20,39 +20,34 @@ export function grade() {
 }
 
 //删除班级接口
-export function gradeDelete(id) {
-    return request({
-        url: "/manger/grade/delete",
-        method: "delete",
-        params: { grade_id: id }
-    })
+export function gradeDelete(data) {
+    let {grade_id} = data
+   // console.log('----------------------', grade_id)
+    return request.delete('/manger/grade/update', { data: {grade_id} })
 }
 
 //更新班级接口
-export function gradeUpdate(grade_id, grade_name, subject_id, room_id) {
+export function gradeUpdate(data) {
     return request({
-        url: "/manger/grade/update",
-        method: "put",
-        params: { grade_id, grade_name, subject_id, room_id }
-    })
+        url: `/manger/grade/update`,
+        method: 'put',
+        data
+      })
 }
 
 //添加班级接口
-export function gradeAdd(grade_name, room_id, subject_id) {
+export function gradeAdd(data) {
     return request({
-        url: "//manger/grade",
+        url: "/manger/grade",
         method: "post",
-        params: { grade_name, room_id, subject_id }
+        data
     })
 }
 
 //删除教室接口
-export function roomDelete(room_id) {
-    return request({
-        url: "/manger/room/delete",
-        method: "delete",
-        params: { room_id }
-    })
+export function roomDelete(data) {
+    let {room_id} = data
+    return request.delete('/manger/room/delete', { data: {room_id} })
 }
 
 //更新教室
@@ -65,11 +60,11 @@ export function roomUpdate(room_id, room_text) {
 }
 
 //添加教室
-export function roomAdd(room_text) {
+export function roomAdd(data) {
     return request({
         url: "/manger/room",
         method: "post",
-        params: { room_text }
+        data 
     })
 }
 
@@ -83,7 +78,7 @@ export function roomAll() {
 
 
 //获取已经分配教室的班级
-export function grade() {
+export function grades() {
     return request({
         url: "/manger/grade",
         method: "get"
@@ -93,9 +88,9 @@ export function grade() {
 //删除学生
 export function studentDelete(id) {
     return request({
-        url: "/manger/student/:id=>student_id",
+        url: `/manger/student/${id}`,
         method: "delete",
-        params: { id }
+       
     })
 }
 
