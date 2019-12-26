@@ -1,8 +1,8 @@
 <!--
  * @Author: 席鹏昊
  * @Date: 2019-12-23 19:13:10
- * @LastEditors: 席鹏昊
- * @LastEditTime: 2019-12-23 19:27:17
+ * @LastEditors  : Please set LastEditors
+ * @LastEditTime : 2019-12-25 11:43:58
  * @Description: 
  -->
 <template>
@@ -12,6 +12,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'App'
 }

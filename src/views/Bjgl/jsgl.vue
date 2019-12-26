@@ -102,11 +102,11 @@ export default {
         this.getjs();
       });
     },
-    shanchu(){
+   async shanchu(){
       this.dialogVisible1 = false
        let params={}
         params.room_id=this.shanchuid
-         this.roomDelete(params)
+        await this.roomDelete(params)
         this.getjs()
 
     }
