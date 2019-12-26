@@ -121,13 +121,6 @@ export default {
         handleEdit(index,row){
             console.log(row)
             this.$router.push(`/examination/examdetail?id=${row.exam_exam_id}`)
-            // this.$router.push({
-            //     path:'/examination/examdetail',
-            //     query:{
-            //         id:row.exam_exam_id
-            //     }
-            // })
-            // this.examDetail({id:row.exam_exam_id})
         }
     },
     created(){
