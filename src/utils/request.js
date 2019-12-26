@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2019-12-18 19:03:56
- * @LastEditTime : 2019-12-23 19:41:05
+ * @LastEditTime : 2019-12-26 11:03:34
  * @LastEditors  : 席鹏昊
  * @Description: In User Settings Edit
  * @FilePath: \calle:\实训\新建文件夹\back-stage-management\src\utils\request.js
@@ -13,7 +13,7 @@ import { getToken } from '@/utils/auth'
 
 // create an axios instance
 const service = axios.create({
-  baseURL: 'http://169.254.160.213:7002', // url = base url + request url
+  baseURL: 'http://169.254.19.13:7002', // url = base url + request url
   // withCredentials: true, // send cookies when cross-domain requests
   timeout: 5000 // request timeout
 })
@@ -52,7 +52,6 @@ service.interceptors.response.use(
   response => {
     //数据截取了  
     const res = response.data
-
     // if the custom code is not 20000, it is judged as an error.
     if (res.code !== 1) { // 改一下
       Message({
@@ -76,7 +75,14 @@ service.interceptors.response.use(
       }
       return Promise.reject(new Error(res.msg || 'Error'))
     } else {
-
+      if(res.msg !== "数据获取成功"){
+        Message({
+          message: res.msg || 'succeed',
+          type: 'succeed',
+          duration: 5 * 1000
+        })
+      }
+     
       return res
     }
   },
