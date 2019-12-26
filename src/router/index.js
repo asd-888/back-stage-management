@@ -247,6 +247,15 @@ export const asyncRoutes = [
             title: '考试列表'
             // if do not set roles, means: this page does not require permission
           }
+        },{
+          path: '/examination/examdetail',
+          component: () => import('@/views/examination/ExamDetail'),
+          name: 'examdetail',
+        },
+        {
+          path: '/examination/addexam',
+          component: () => import('@/views/examination/AddExam'),
+          name: 'addexam',
         }
       ]
     },
@@ -272,7 +281,7 @@ export const asyncRoutes = [
         {
           path: '/marking/classmate',
           name:'classmate',
-          component: () => import('@/views/AwaitClass/classmate')
+          component: () => import('@/views/AwaitClass/Classmate')
         }
       ]
     },

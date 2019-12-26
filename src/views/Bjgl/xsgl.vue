@@ -6,22 +6,23 @@
 
       <el-select v-model="duixiang.sel1" placeholder="请选择教室号" style="margin-left:30px">
         <el-option
-          v-for="(item,index) in jslist"
+          v-for="(item,index) in jiaoshi"
           :key="index"
-          :label="item.room_text"
-          :value="item.room_id"
+          :label="item"
+          :value="item"
         ></el-option>
       </el-select>
-      <el-select v-model="value" placeholder="班级名" style="margin-left:30px">
+      <el-select  placeholder="班级名" style="margin-left:30px" v-model="duixiang.sel2">
         <el-option
-          v-for="item in jslist"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
+          v-for="(item,index) in arr"
+          :key="index"
+          :label="item"
+          :value="item"
         ></el-option>
       </el-select>
 
-      <el-button type="primary" style="margin-left:30px">搜索</el-button>
+      <el-button type="primary" style="margin-left:30px" @click="searchfn">搜索</el-button>
+      <el-button type="primary" style="margin-left:30px" @click="chongzhi">重置</el-button>
     </div>
     <!-- 下面是表格 -->
     <el-table :data="xslist.slice((currentPage-1)*pageSize,currentPage*pageSize)" style="width: 100%" class="table1">
@@ -81,20 +82,21 @@
           :total="xslist.length">
         </el-pagination>
       </div> 
+      
   </div>
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions,mapMutations } from "vuex";
 export default {
   data() {
     return {
       duixiang: {
         input1: "",
-        sel1: ""
+        sel1: "",
+        sel2: ""
       },
 
-     
         currentPage: 1,
         pageSize: 20
     };
@@ -103,13 +105,23 @@ export default {
   methods: {
     ...mapActions({
       getjs: "jsgl/roomAll",
-      getxs: "xsgl/student"
+      getxs: "xsgl/student",
+      studentDelete:"xsgl/studentDelete"
+    }),
+    ...mapMutations({
+        mohu:"xsgl/mohu"
     }),
     handleEdit(index, row) {
       console.log(index, row);
+    
+
     },
-    handleDelete(index, row) {
+   async handleDelete(index, row) {
       console.log(index, row);
+      await this.studentDelete(row.student_id)
+           this.getxs()
+        
+       
     },
      handleSizeChange(val) {
         console.log(`每页 ${val} 条`);
@@ -117,19 +129,31 @@ export default {
       },
       handleCurrentChange(val) {
         console.log(`当前页: ${val}`);
-           this.currentPage=val
-          
+           this.currentPage=val 
       },
+      searchfn(){
+         console.log(this.duixiang.input1,this.duixiang.sel1,this.duixiang.sel2)
+         this.mohu({ipt1:this.duixiang.input1,sel1:this.duixiang.sel1,sel2:this.duixiang.sel2})
+      },
+      chongzhi(){
+        this.duixiang.input1=""
+        this.duixiang.sel1=""
+        this.duixiang.sel2=""
+         this.getxs()
+      }
+
   },
   computed: {
     ...mapState({
       jslist: state => state.jsgl.jslist,
-      xslist: state => state.xsgl.xslist
+      xslist: state => state.xsgl.xslist,
+      arr: state => state.xsgl.arr,
+      jiaoshi:state => state.xsgl.jiaoshi,
     })
   },
   mounted() {
-    this.getjs();
-    this.getxs();
+    this.getjs()
+    this.getxs()
   }
 };
 </script>

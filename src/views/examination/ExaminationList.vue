@@ -44,45 +44,42 @@
                     </div>
                 </div>
                 <div class="list">
+                    
                     <el-table
-                        :data="tableData"
+                        :data="ExamList"
                         style="width: 100%">
                         <el-table-column
-                            prop="date"
-                            label="日期"
-                            width="180">
+                            prop="title"
+                            label="试卷信息"
+                           >
                         </el-table-column>
                         <el-table-column
-                            prop="name"
-                            label="姓名"
-                            width="180">
+                            prop="grade_name"
+                            label="班级"
+                           >
                         </el-table-column>
                         <el-table-column
-                            prop="name"
-                            label="姓名"
-                            width="180">
+                            prop="user_name"
+                            label="创建人"
+                           >
                         </el-table-column>
                         <el-table-column
-                            prop="name"
-                            label="姓名"
-                            width="180">
+                            prop="start_time"
+                            label="开始时间"
+                           >
                         </el-table-column>
                         <el-table-column
-                            prop="name"
-                            label="姓名"
-                            width="180">
-                        </el-table-column>
-                        <el-table-column
-                            prop="name"
-                            label="姓名"
-                            width="180">
+                            prop="end_time"
+                            label="结束时间"
+                           >
                         </el-table-column>
                          <el-table-column label="操作">
                             <template slot-scope="scope">
                             <span
+                                class="span"
                                 size="mini"
                                 @click="handleEdit(scope.$index, scope.row)"
-                            >批卷</span>
+                            >详情</span>
                             </template>
                         </el-table-column>
                     </el-table>
@@ -93,6 +90,7 @@
 </template>
 
 <script>
+import {mapState,mapMutations,mapActions} from 'vuex'
 export default {
     data(){
         return{
@@ -119,23 +117,50 @@ export default {
             value: '',
             value1:'',
             tableData: [{
-            date: '2016-05-02',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1518 弄'
-          }, {
-            date: '2016-05-04',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1517 弄'
-          }, {
-            date: '2016-05-01',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1519 弄'
-          }, {
-            date: '2016-05-03',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1516 弄'
-          }]
+                date: '2016-05-02',
+                name: '王小虎',
+                address: '上海市普陀区金沙江路 1518 弄'
+            }, {
+                date: '2016-05-04',
+                name: '王小虎',
+                address: '上海市普陀区金沙江路 1517 弄'
+            }, {
+                date: '2016-05-01',
+                name: '王小虎',
+                address: '上海市普陀区金沙江路 1519 弄'
+            }, {
+                date: '2016-05-03',
+                name: '王小虎',
+                address: '上海市普陀区金沙江路 1516 弄'
+            }]
         }   
+    },
+    computed:{
+        ...mapState({
+            ExamList:state=>state.examination.ExamList
+        })
+    },
+    methods:{
+        // 异步
+        ...mapActions({
+            examList:'examination/examList',
+           
+        }),
+        ...mapMutations({
+
+        }),
+        handleEdit(index,row){
+            this.$router.push({
+                path:'/examination/examdetail',
+                query:{
+                    id:row.exam_exam_id
+                }
+            })
+        }
+    },
+    created(){
+        // 考试列表
+        this.examList()
     }
 }
 </script>
@@ -163,6 +188,9 @@ export default {
 }
 el-table{
     width: 100%;
+}
+.is-leaf{
+    width: 20%;
 }
 .item{
     margin-right:40px;
@@ -207,5 +235,9 @@ button{
     border: 1px solid #ccc;
     cursor: pointer;
     margin: 0;
+}
+.span{
+    color: #0139fd;
+    cursor: pointer;
 }
 </style>

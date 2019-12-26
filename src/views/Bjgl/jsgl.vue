@@ -30,8 +30,9 @@
           :label-width="formLabelWidth"
           :rules="[
       { required: true, message: '请输入教室号'},
-      { type: 'number', message: '教室号必须为数字值'}
-    ]"
+   
+    ]"   prop= "name"
+    
         >
           <el-input v-model="form.name" autocomplete="off" placeholder="教室名"></el-input>
         </el-form-item>
@@ -101,11 +102,11 @@ export default {
         this.getjs();
       });
     },
-    shanchu(){
+   async shanchu(){
       this.dialogVisible1 = false
        let params={}
         params.room_id=this.shanchuid
-         this.roomDelete(params)
+        await this.roomDelete(params)
         this.getjs()
 
     }

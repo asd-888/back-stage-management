@@ -47,9 +47,6 @@ const actions = {
     commit('setClassList', res.data)
   },
   async studentPaperList({ commit }, payload) {
-    // console.log(payload,"123456")
-    // let params = {grade_id:payload}
-    // console.log(params,"params55555")
     const res = await studentPaperList(payload)
     commit('setStudentPaperList', res.exam)
   }

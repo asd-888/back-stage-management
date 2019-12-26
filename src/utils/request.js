@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2019-12-18 19:03:56
- * @LastEditTime : 2019-12-26 11:03:34
+ * @LastEditTime : 2019-12-26 15:56:48
  * @LastEditors  : 席鹏昊
  * @Description: In User Settings Edit
  * @FilePath: \calle:\实训\新建文件夹\back-stage-management\src\utils\request.js
@@ -33,6 +33,7 @@ service.interceptors.request.use(
   },
   error => {
     // do something with request error
+    console.log(error) // for debug
     return Promise.reject(error)
   }
 )
@@ -50,12 +51,11 @@ service.interceptors.response.use(
    * You can also judge the status by HTTP Status Code
    */
   response => {
-    //数据截取了  
     const res = response.data
     // if the custom code is not 20000, it is judged as an error.
-    if (res.code !== 1) { // 改一下
+    if (res.code !== 1) {
       Message({
-        message: res.msg || 'Error',
+        message: res.message || 'Error',
         type: 'error',
         duration: 5 * 1000
       })
@@ -73,7 +73,7 @@ service.interceptors.response.use(
           })
         })
       }
-      return Promise.reject(new Error(res.msg || 'Error'))
+      // return Promise.reject(new Error(res.message || 'Error'))
     } else {
       if(res.msg !== "数据获取成功"){
         Message({

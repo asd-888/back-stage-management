@@ -45,10 +45,16 @@
 
 <el-dialog title="添加班级" :visible.sync="dialogFormVisible">
   <el-form :model="form" label-position="top">
-    <el-form-item label="班级名"  > 
+    <el-form-item label="班级名"   :rules="[
+      { required: true, message: '请输入教室号'}
+     
+    ]"> 
       <el-input v-model="form.name" autocomplete="off"  :disabled="flag" :style='{width:formLabelWidth}'></el-input>
     </el-form-item>
-    <el-form-item label="教室号"   > 
+    <el-form-item label="教室号"   :rules="[
+      { required: true, message: '请输入教室号'}
+     
+    ]" prop="region"> 
       <el-select v-model="form.region" placeholder="请选择活动区域" :style='{width:formLabelWidth}'>
       
         <el-option :label="item.room_text" :value="item.room_id" v-for="(item,index) in bjlist" :key="index"></el-option>
@@ -56,7 +62,10 @@
        
       </el-select>
     </el-form-item>
-     <el-form-item label="课程名"  >
+     <el-form-item label="课程名"   :rules="[
+      { required: true, message: '请输入教室号'}
+   
+    ]">
       <el-select  v-model="form.region1" placeholder="请选择活动区域" :style='{width:formLabelWidth}'>
       <el-option :label="item.subject_text"  :value="item.subject_id"  v-for="(item,index) in bjlist" :key="index"></el-option>
        
