@@ -2,7 +2,7 @@ import { mapActions, mapState } from 'vuex';
 <!--
  * @Author: your name
  * @Date: 2019-12-23 19:39:30
- * @LastEditTime : 2019-12-25 16:07:58
+ * @LastEditTime : 2019-12-26 21:07:00
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \新建文件夹\back-stage-management\src\views\testSon\condition.vue
@@ -67,18 +67,14 @@ export default {
         })
     },
     created(){
-        let res=this.$store.state.Detail
         this.Detail({questions_id:this.$route.query.questions_id})
+    },
+    watch:{
+        detailData(){
+        let res=this.$store.state.Detail
         this.questItem = res.detailData[0].questions_stem
         this.answer=res.detailData[0].questions_answer
-        // console.log(res.detailData[0].questions_stem,'22222222222')
-        // 
-
-    },
-    mounted(){
-    // console.log(this.$route.query.questions_id)
-    //   console.log(this.detailData)
-    
+        }
     }
 }
 </script>
