@@ -8,7 +8,8 @@ const state = {
     ExamList:[],
     examDetailList:[],
     addExamList:[],
-    exam_exam_id:''
+    exam_exam_id:'',
+    question_ids:{}
 }
 const mutations = {
     setcoursesList(state,payload){
@@ -47,7 +48,8 @@ const mutations = {
                 return item
             })
         }
-        
+        state.question_ids = state.ExamList[2].question_ids
+    
     },
     // 教师端详情
     setExamDetailList(state,payload){
@@ -56,7 +58,8 @@ const mutations = {
     //添加页面
     setaddExamList(state,paylaod){
         state.addExamList = paylaod
-        state.exam_exam_id = JSON.stringify(paylaod.exam_exam_id)
+        
+       
     },
     setList(state,payload){
         let list = state.addExamList.questions;
@@ -81,28 +84,37 @@ const actions = {
     // 教师端详情
     async examDetail({commit},payload){
         let res = await examDetail(payload);
-        console.log("res.....",res)
         commit('setExamDetailList',res.data)
     },
     // 创建考试
-    async addExam({commit},payload){
+    async addExam({commit,state},payload){
         let res = await addExam(payload);
         commit('setaddExamList',res.data)
+        state.exam_exam_id = res.data.exam_exam_id
+        let arr =[]
+        res.data.questions.forEach(item => {
+            arr.push(item.questions_id)
+        });
+        
+        let brr = {
+            question_ids:JSON.stringify(arr)
+        }
+        state. question_ids = brr
+        console.log(state)
+        console.log("state",state.question_ids)
     },
     // 删除
     async deleteOne({commit},payload){
         let res = await deleteOne();
-        console.log(res,"res.....wwwwwwwwwwww...")
         // commit('setaddExamList',res.data)
 
     },
     // 更新
     async updateExamList({commit,state},payload){
-        let res = await updateExamList({question_ids:state.exam_exam_id});
-        // console.log(res,"++++++++++")
-        // commit('setaddExamList',res.data)
-        // console.log(res.data,"res.data")
-        // console.log(JSON.stringify(res.data.exam_exam_id))
+       
+        let {exam_exam_id,question_ids} = state
+      
+        let res = await updateExamList(exam_exam_id,question_ids);
     }
 }
 

@@ -33,6 +33,7 @@ export default {
         ...mapMutations({
             addExam:'examination/addExam',
             setList:'examination/setList',
+            setaddExamList:'examination/setaddExamList',
            
         }),
         ...mapActions({

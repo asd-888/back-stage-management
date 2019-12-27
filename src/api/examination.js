@@ -35,9 +35,9 @@ export function addExam(data){
     })
 }
 // 更新列表
-export function updateExamList(data){
+export function updateExamList(exam_exam_id,data){
     return request ({
-        url:'/exam/exam/8nyeq-a1x5cc',
+        url:`/exam/exam/${exam_exam_id}`,
         method:'put',
         data
     })

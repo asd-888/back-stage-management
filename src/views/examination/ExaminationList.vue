@@ -46,6 +46,7 @@
                 <div class="list">
                     
                     <el-table
+                       
                         :data="ExamList"
                         style="width: 100%">
                         <el-table-column
@@ -126,6 +127,7 @@ export default {
     created(){
         // 考试列表
         this.examList()
+        console.log(this.$store.state)
     }
 }
 </script>
