@@ -21,7 +21,7 @@ function jiaoshihao(data){
    return new Set(str) 
 }
 const mutations = {
-     ADD_ERROR_LOG: (state, payload) => {
+     ADD_ERROR_LOG: (state, payload) => {//payload就是异步方法拿回来的数据，
       state.xslist=payload        //在同步方法里调用外面赋值的方法，将大数据传给外面的方法，让外面的方法返回咱们需要的数据，在传给组件
       state.arr= formatlist(payload)
       state.jiaoshi=jiaoshihao(payload)

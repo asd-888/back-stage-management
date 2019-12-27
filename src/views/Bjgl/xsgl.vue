@@ -26,6 +26,7 @@
     </div>
     <!-- 下面是表格 -->
     <el-table :data="xslist.slice((currentPage-1)*pageSize,currentPage*pageSize)" style="width: 100%" class="table1">
+        <!-- 做分页时候表格的数据需要通过总数据来截取，这样一页就可以显示多少条了 -->
       <el-table-column label="姓名" width="180">
         <template slot-scope="scope">
           
@@ -97,8 +98,8 @@ export default {
         sel2: ""
       },
 
-        currentPage: 1,
-        pageSize: 20
+        currentPage: 1,//第几页，默认第一页
+        pageSize: 20 //一页多少条
     };
   },
 

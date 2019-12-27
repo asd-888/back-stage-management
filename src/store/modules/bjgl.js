@@ -12,7 +12,7 @@ const mutations = {
   
   }
   
-  const actions = {
+  const actions = { //涉及到接口请求的全部放到actions里
     async grades({ commit }) {
         let res =  await grades()
         console.log(res)
