@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2019-12-18 19:03:56
- * @LastEditTime : 2019-12-26 09:39:20
+ * @LastEditTime : 2019-12-27 15:58:55
  * @LastEditors  : 席鹏昊
  * @Description: In User Settings Edit
  * @FilePath: \calle:\实训\新建文件夹\back-stage-management\src\permission.js
@@ -26,18 +26,18 @@ router.beforeEach(async(to, from, next) => {
   document.title = getPageTitle(to.meta.title)
 
   // determine whether the user has logged in
-  const hasToken = getToken()
-  console.log(getToken())
-
+  const hasToken = getToken();
+    console.log( "hasToken....",hasToken,)
   if (hasToken) {
     if (to.path === '/login') {
-      console.log(hasToken,"hasToken")
       // if is logged in, redirect to the home page
       next({ path: '/' })
       NProgress.done()
     } else {
       // determine whether the user has obtained his permission roles through getInfo
-      const hasRoles = store.getters.roles && store.getters.roles.length > 0
+     
+      const hasRoles = store.state.user.viewAuthority && store.state.user.viewAuthority.length > 0;
+
       if (hasRoles) {
         next()
       } else {
@@ -45,11 +45,10 @@ router.beforeEach(async(to, from, next) => {
           // get user info
           // note: roles must be a object array! such as: ['admin'] or ,['developer','editor']
           const roles = await store.dispatch('user/getInfo')
-          // console.log(await store.dispatch('user/getInfo'))
-
+          
           // generate accessible routes map based on roles
           const accessRoutes = await store.dispatch('permission/generateRoutes', roles)
-
+          
           // dynamically add accessible routes
           router.addRoutes(accessRoutes)
 

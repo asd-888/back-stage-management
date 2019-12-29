@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2019-12-19 15:49:44
- * @LastEditTime : 2019-12-19 15:50:22
- * @LastEditors  : Please set LastEditors
+ * @LastEditTime : 2019-12-27 15:55:28
+ * @LastEditors  : 席鹏昊
  * @Description: In User Settings Edit
  * @FilePath: \calle:\实训\新建文件夹\back-stage-management\src\router\modules\testquestion.js
  */
@@ -20,7 +20,7 @@ const testQuestionRouter={
             path:"addTestQuestion",
             component:()=>import('@/views/testQuestion/AddtestQuestion'),
             name:"Add",
-            meta:{title:'添加试题'}
+            meta:{title:'添加试题', }
         },
         {
             path:"TestQuestionClassify",

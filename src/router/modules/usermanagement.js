@@ -3,7 +3,7 @@
  * @Author: 席鹏昊
  * @Date: 2019-12-24 14:52:55
  * @LastEditors  : 席鹏昊
- * @LastEditTime : 2019-12-24 20:00:01
+ * @LastEditTime : 2019-12-27 15:48:31
  * @Description: 
  */
 
@@ -22,13 +22,13 @@ const userManagement= {
             path: "addUser", 
             component: ()=> import("@/views/userManagement/adduser"),
             name: "adduser",
-            meta: {title: "添加用户"}
+            meta: {title: "添加用户", view_id: "main-addUser"}
         },
         {
             path: "userDisplay",
             component: ()=> import("@/views/userManagement/userDisplay"),
             name: "userDisplay",
-            meta: {title: "用户展示"}
+            meta: {title: "用户展示", view_id: "main-showUser"}
         }
     ]
 }

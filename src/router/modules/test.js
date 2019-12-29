@@ -2,8 +2,8 @@ import { condition } from '../../api/tryTopic';
 /*
  * @Author: 席鹏昊
  * @Date: 2019-12-20 08:54:45
- * @LastEditors  : Please set LastEditors
- * @LastEditTime : 2019-12-24 14:35:42
+ * @LastEditors  : 席鹏昊
+ * @LastEditTime : 2019-12-27 16:20:48
  * @Description: 
  */
 
@@ -24,24 +24,26 @@ import { condition } from '../../api/tryTopic';
         path: 'addtest',
         component: () => import('@/views/test/addTest'),
         name: 'addTest',
-        meta: { title: '添加试题' }
+        meta: { title: '添加试题', view_id: "main-addQuestions" }
       },
       {
         path: 'classifytest',
         component: () => import('@/views/test/classifyTest'),
         name: 'classifyTest',
-        meta: { title: '试题分类' }
+        meta: { title: '试题分类', view_id: "main-questionsType" }
       },
       {
         path: 'examinetest',
         component: () => import('@/views/test/examineTest'),
         name: 'examineTest',  
-        meta: { title: '试题分类' }
+        meta: { title: '查看试题', view_id: "main-watchQuestions" }
       },
       {
         path: '/examinetest/condition',
         component: () => import('@/views/testSon/condition'),
+        meta:{ view_id: "main-watchQuestions"}
       }
+    
       
     ]
   }

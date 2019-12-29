@@ -1,12 +1,12 @@
 /*
  * @Author: your name
  * @Date: 2019-12-18 19:03:56
- * @LastEditTime : 2019-12-23 19:38:54
+ * @LastEditTime : 2019-12-27 15:06:37
  * @LastEditors  : 席鹏昊
  * @Description: In User Settings Edit
  * @FilePath: \calle:\实训\新建文件夹\back-stage-management\src\store\modules\permission.js
  */
-import { asyncRoutes, constantRoutes } from '@/router'
+import { asyncRoutes, constantRoutes, authorityRoutes } from '@/router'
 
 /**
  * Use meta.role to determine if the current user has permission
@@ -55,18 +55,49 @@ const mutations = {
 }
 
 const actions = {
-  generateRoutes({ commit }, roles) {
-    console.log(roles)
-    return new Promise(resolve => {
-      let accessedRoutes
-      if (roles.includes('admin')) {
-        accessedRoutes = asyncRoutes || []
-      } else {
-        accessedRoutes = filterAsyncRoutes(asyncRoutes, roles)
-      }
-      commit('SET_ROUTES', accessedRoutes)
-      resolve(accessedRoutes)
+ async generateRoutes({ commit }, roles) {
+    console.log("roles....roles",roles)
+
+    let accessedRoutes = [];
+    //循环authorityRoutes
+    authorityRoutes.forEach(item=>{
+      let children = [], unAuthorized = [];
+      item.children.forEach(value=>{
+        if(roles.findIndex(view=>view.view_id===value.meta.view_id) !== -1){
+          children.push(value);
+        }else{
+          unAuthorized.push(value)
+        }
+      })
+
+      //把拥有的路由重置
+      item.children=children;
+      console.log("item...",item)
+      accessedRoutes.push(item)
+      console.log(accessedRoutes,"accessedRoutesaccessedRoutes")
+      //把没有的路由重定向到401
+      unAuthorized.forEach(value=>{
+        accessedRoutes.push({
+          path: item.path+'/'+value.path,
+          redirect: '/401'
+        })
+      })
     })
+    commit('SET_ROUTES', accessedRoutes)
+    console.log('accessedRoutes...', accessedRoutes);
+    return accessedRoutes;
+
+
+    // return new Promise(resolve => {
+    //   let accessedRoutes
+    //   if (roles.includes('admin')) {
+    //     accessedRoutes = asyncRoutes || []
+    //   } else {
+    //     accessedRoutes = filterAsyncRoutes(asyncRoutes, roles)
+    //   }
+    //   commit('SET_ROUTES', accessedRoutes)
+    //   resolve(accessedRoutes)
+    // })
   }
 }
 
