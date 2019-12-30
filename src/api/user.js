@@ -16,17 +16,23 @@ export function login(data) {
   })
 }
 
-export function getInfo(token) {
+
+export function getInfo() { //获取用户信息
   return request({
-    url: '/user/info',
-    method: 'get',
-    params: { token }
+    url: '/user/userInfo',
+    method: 'get'
   })
 }
-
+export function getViewAuthority(){  //获去视图权限
+  return request({
+    url: '/user/view_authority',
+    method: 'get'
+  })
+}
 export function logout() {
   return request({
     url: '/user/logout',
     method: 'post'
   })
 }
+
