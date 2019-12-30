@@ -105,16 +105,16 @@ export const constantRoutes = [
     ]
   },
   
-  {
-    path: '/exam',
-    component: Layout,
-    children: [{
-      path: 'index',
-      component: () => import('@/views/exam/index'),
-      name: 'Documentation',
-      meta: { title: 'exam', icon: 'dashboard' }
-    }]
-  },
+  // {
+  //   path: '/exam',
+  //   component: Layout,
+  //   children: [{
+  //     path: 'index',
+  //     component: () => import('@/views/exam/index'),
+  //     name: 'Documentation',
+  //     meta: { title: 'exam', icon: 'dashboard' }
+  //   }]
+  // },
 
     
    
@@ -219,46 +219,46 @@ export const asyncRoutes = [
   test,
   user,
     // 考试管理
-    {
-      path: '/examination',
-      component: Layout,
-      redirect: '/examination/addexamination',
-      alwaysShow: true, // will always show the root menu
-      name: 'Examination',
-      meta: {
-        title: '考试管理',
-        icon: 'example',
-      },
-      children: [
-        {
-          path: 'addexamination',
-          component: () => import('@/views/examination/AddExamination'),
-          name: 'AddExamination',
-          meta: {
-            title: '添加考试',
-            roles: ['admin'] // or you can only set roles in sub nav
-          }
-        },
-        {
-          path: 'examinationlist',
-          component: () => import('@/views/examination/ExaminationList'),
-          name: 'ExaminationList',
-          meta: {
-            title: '考试列表'
-            // if do not set roles, means: this page does not require permission
-          }
-        },{
-          path: '/examination/examdetail',
-          component: () => import('@/views/examination/ExamDetail'),
-          name: 'examdetail',
-        },
-        {
-          path: '/examination/addexam',
-          component: () => import('@/views/examination/AddExam'),
-          name: 'addexam',
-        }
-      ]
-    },
+    // {
+    //   path: '/examination',
+    //   component: Layout,
+    //   redirect: '/examination/addexamination',
+    //   alwaysShow: true, // will always show the root menu
+    //   name: 'Examination',
+    //   meta: {
+    //     title: '考试管理',
+    //     icon: 'example',
+    //   },
+    //   children: [
+    //     {
+    //       path: 'addexamination',
+    //       component: () => import('@/views/examination/AddExamination'),
+    //       name: 'AddExamination',
+    //       meta: {
+    //         title: '添加考试',
+    //         roles: ['admin'] // or you can only set roles in sub nav
+    //       }
+    //     },
+    //     {
+    //       path: 'examinationlist',
+    //       component: () => import('@/views/examination/ExaminationList'),
+    //       name: 'ExaminationList',
+    //       meta: {
+    //         title: '考试列表'
+    //         // if do not set roles, means: this page does not require permission
+    //       }
+    //     },{
+    //       path: '/examination/examdetail',
+    //       component: () => import('@/views/examination/ExamDetail'),
+    //       name: 'examdetail',
+    //     },
+    //     {
+    //       path: '/examination/addexam',
+    //       component: () => import('@/views/examination/AddExam'),
+    //       name: 'addexam',
+    //     }
+    //   ]
+    // },
    
     // 阅卷管理
     {
@@ -537,6 +537,98 @@ export const asyncRoutes = [
 
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
+]
+// 权限路由
+export const authorityRoutes = [
+  
+  {
+    path: '/exam',
+    component: Layout,
+    meta: { title: 'zhaozhihao.title', icon: 'example'},
+    children: [{
+      path: 'add',
+      component: ()=>import('@/views/test/addTest'),
+      name: 'Exam',
+      meta: {title: '添加试题', icon: 'dashboard', view_id: 'main-addQuestions'}
+    },{
+      path: 'classify',
+      component: ()=>import('@/views/test/classifyTest'),
+      name: 'Exam',
+      meta: {title: '试题分类', icon: 'dashboard', view_id: 'main-questionsType'}
+    },{
+      path: 'view',
+      component: ()=>import('@/views/test/examineTest'),
+      name: 'Exam',
+      meta: {title: '查看试题', icon: 'dashboard', view_id: 'main-watchQuestions'}
+    },
+    {
+      path: '/GGBOND',
+      hidden:true,
+      component: ()=>import('@/views/components-demo/avatar-upload'),
+      meta: { title: 'GGBOND', icon: 'example',view_id: 'main-addQuestions'}
+    },]
+  },
+  {
+    path: '/examination',
+    component: Layout,
+    redirect: '/examination/addexamination',
+    alwaysShow: true, // will always show the root menu
+    name: 'Examination',
+    meta: {
+      title: '考试管理',
+      icon: 'example',
+    },
+    children: [
+      {
+        path: 'addexamination',
+        component: () => import('@/views/examination/AddExamination'),
+        name: 'AddExamination',
+        meta: {
+          title: '添加考试',
+          roles: ['admin'] ,// or you can only set roles in sub nav
+          view_id: "main-addExam"
+        }
+      },
+        {
+        path: 'zhuzhu',
+        component: () => import('@/views/components-demo/avatar-upload'),
+        name: 'zhuzhu',
+        meta: {
+          title: 'zhuzhu',
+          
+          view_id: "main-addExam"
+        }
+      },
+      {
+        path: 'examinationlist',
+        component: () => import('@/views/examination/ExaminationList'),
+        name: 'ExaminationList',
+        meta: {
+          title: '试卷列表',
+          view_id: "main-examDetail"
+          // if do not set roles, means: this page does not require permission
+        }
+      },{
+        path: '/examination/examdetail',
+        component: () => import('@/views/examination/ExamDetail'),
+        name: 'examdetail',
+        hidden:true,
+        meta:{
+          view_id: "main-examDetail"
+         
+        }
+      },
+      {
+        path: '/examination/addexam',
+        component: () => import('@/views/examination/AddExam'),
+        name: 'addexam',
+        hidden:true,
+        meta:{
+          view_id: "main-examEdit"
+        }
+      }
+    ]
+  },
 ]
 
 const createRouter = () => new Router({

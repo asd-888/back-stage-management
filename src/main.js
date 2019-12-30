@@ -33,6 +33,10 @@ import './utils/error-log' // error log
 import * as filters from './filters' // global filters
 
 
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
+// use
+Vue.use(mavonEditor)
 
 /**
  * If you don't want to use mock-server

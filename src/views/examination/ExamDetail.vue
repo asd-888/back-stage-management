@@ -3,10 +3,12 @@
     
         <el-header>试卷详情</el-header>
         <el-main>
+            <!-- <MarkdownEditor v-model="asd"/> -->
             <div class="left" v-if="examDetailList.questions">
                 <div v-for="(item,index) in examDetailList.questions" :key="index">
                     <p>{{index+1}}{{item.title}}</p>
-                    <p>{{item.questions_stem}}</p>
+                    <!-- 只读模式 -->
+                    <mavon-editor :subfield="false"  defaultOpen="preview" :editable="false" :toolbarsFlag="false" v-model="item.questions_stem"/>
                 </div>
             </div>
             <div class="right">
@@ -18,8 +20,17 @@
 </template>
 
 <script>
+import MarkdownEditor from '@/components/MarkdownEditor'
 import {mapState,mapMutations,mapActions} from 'vuex'
 export default {
+    data(){
+        return {
+            asd :1
+        }
+    },
+    components:{
+        MarkdownEditor
+    },
     methods:{
         ...mapActions({
              examDetail:'examination/examDetail'
@@ -58,7 +69,7 @@ export default {
     background: #fff;
 }
 .left>div{
-    border: 1px solid #000;
+   
     margin: 20px 10px;
     line-height: 40px;
     padding: 20px;

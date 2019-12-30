@@ -91,8 +91,6 @@ export default {
     }
   },
   created() {
-    // this.grade_name = localStorage.getItem('grade_name')
-    // ,grade_name:localStorage.getItem('grade_name')
     
   }
 }
