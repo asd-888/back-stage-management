@@ -36,3 +36,10 @@ export function logout() {
   })
 }
 
+export function Gengxin(data) {
+  return request({
+    url: '/user/user',
+    method: 'put',
+    data
+  })
+}

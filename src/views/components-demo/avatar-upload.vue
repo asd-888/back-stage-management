@@ -23,7 +23,7 @@
       :key="imagecropperKey"
       :width="300"
       :height="300"
-      url="https://httpbin.org/post"
+      url="http://123.206.55.50:11000/upload"
       lang-type="en"
       @close="close"
       @crop-upload-success="cropSuccess"
@@ -34,7 +34,9 @@
 <script>
 import ImageCropper from '@/components/ImageCropper'
 import PanThumb from '@/components/PanThumb'
-
+import { mapActions, mapState, mapMutations } from "vuex"
+import axios from "axios"
+import {Gengxin} from "@/api/user"
 export default {
   name: 'AvatarUploadDemo',
   components: { ImageCropper, PanThumb },
@@ -45,11 +47,37 @@ export default {
       image: 'https://wpimg.wallstcn.com/577965b9-bb9e-4e02-9f0c-095b41417191'
     }
   },
+  computed:{
+      ...mapState({
+         
+          id:state=>state.user.id
+       })
+  },
+  mounted(){
+    this.getInfo()
+  },
   methods: {
+    // ...mapMutations({
+    //    SET_AVATAR: "user/SET_AVATAR",
+
+    // }),
+    ...mapActions({
+       getInfo:"user/getInfo"
+    }),
     cropSuccess(resData) {
+      console.log(this.id)
+      console.log(resData)
       this.imagecropperShow = false
       this.imagecropperKey = this.imagecropperKey + 1
-      this.image = resData.files.avatar
+      this.image = resData[0].path//
+      // this.SET_AVATAR(resData[0].path)
+      let data={};
+      data.user_id=this.id;
+      
+      data.avatar=resData[0].path
+      console.log(data)
+      Gengxin(data) //直接将头像的方法存到数据库里，不经过vuex，
+      this.getInfo() //调用重新获取用户信息的接口页面就刷新了
     },
     close() {
       this.imagecropperShow = false

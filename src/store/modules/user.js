@@ -8,7 +8,8 @@ const state = {
   avatar: '',
   introduction: '',
   roles: [],
-  viewAuthority: []
+  viewAuthority: [],
+  id:""
 }
 
 const mutations = {
@@ -29,6 +30,9 @@ const mutations = {
   },
   SET_VIEWAUTHORITY: (state, viewAuthority) => {
     state.viewAuthority = viewAuthority;
+  },
+  SET_ID:(state,payload)=>{
+    state.id=payload
   }
 }
 
@@ -47,8 +51,8 @@ const actions = {
     let userInfo = await getInfo();
     console.log('userInfo...', userInfo);
     commit('SET_NAME', userInfo.data.user_name)
-    commit('SET_AVATAR', userInfo.data.avatar || 'https://jasonandjay.com/favicon.ico')
-
+    commit('SET_AVATAR', userInfo.data.avatar)
+    commit("SET_ID",userInfo.data.user_id)
     // 2. 获取用户视图权限信息
     let viewAuthority = await getViewAuthority();
     console.log('viewAuthority...', viewAuthority);
