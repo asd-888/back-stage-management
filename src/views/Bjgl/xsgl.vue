@@ -1,6 +1,9 @@
 <template>
   <div>
+     <input type="file" @change="importExcel">
+    <el-button @click="exportEXcel">导出Excel</el-button>
     <h2>学生管理</h2>
+    <!-- <table id="table"></table>导入的html类型的表格，这个表格是自己创建的 -->
     <div class="biaodan">
       <el-input v-model="duixiang.input1" placeholder="请输入学生姓名" style="width:200px" class="input1"></el-input>
 
@@ -88,6 +91,7 @@
 </template>
 
 <script>
+import XLSX from 'xlsx';
 import { mapState, mapActions,mapMutations } from "vuex";
 export default {
   data() {
@@ -124,6 +128,7 @@ export default {
         
        
     },
+    
      handleSizeChange(val) {
         console.log(`每页 ${val} 条`);
           this.pageSize=val
@@ -141,9 +146,40 @@ export default {
         this.duixiang.sel1=""
         this.duixiang.sel2=""
          this.getxs()
-      }
-
+      },
+      importExcel(e){
+      let file = e.target.files[0];
+      var reader = new FileReader();
+      reader.onload = (e)=>{
+        var data = new Uint8Array(e.target.result);
+        var workbook = XLSX.read(data, {type: 'array'});
+        console.log('workbook...', workbook);
+        var worksheet = workbook.Sheets[workbook.SheetNames[0]];
+        var json = XLSX.utils.sheet_to_json(worksheet);
+        // var container = document.getElementById('table');
+        // container.innerHTML = XLSX.utils.sheet_to_html(worksheet);
+        console.log('json...', json);
+        this.data = json;
+        /* DO SOMETHING WITH workbook HERE */
+      };
+      reader.readAsArrayBuffer(file);
+    },
+     exportEXcel(){ //导出xlsx
+      var wb = XLSX.utils.book_new();;
+      console.log(this.data, 'keys...', Object.keys(this.xslist[0]))
+      // 创建worksheet
+      var ws = XLSX.utils.json_to_sheet(this.xslist, {header: Object.keys(this.xslist[0])});
+      console.log('ws...', ws);
+      // 通过worksheet生成workbooks
+      XLSX.utils.book_append_sheet(wb, ws, 'student1')
+      // XLSX.utils.book_append_sheet(wb, ws, 'student2')
+      // XLSX.utils.book_append_sheet(wb, ws, 'student3')
+      // 把workbook生成excel
+      XLSX.writeFile(wb, 'zzh');
+    }
   },
+
+  
   computed: {
     ...mapState({
       jslist: state => state.jsgl.jslist,
